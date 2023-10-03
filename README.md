@@ -13,3 +13,23 @@
 * [Что это?](#что-это)
 * [Навигация](#навигация)
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+---
+<h3>test:</h3>
+
+    flet pack main.py --icon .\icons\favicon.png
+---
