@@ -1,6 +1,3 @@
-# Created by https://www.toptal.com/developers/gitignore/api/venv,python,pythonvanilla,pycharm,visualstudiocode,visualstudio,pycharm+all,git,virtualenv,autohotkey
-# Edit at https://www.toptal.com/developers/gitignore?templates=venv,python,pythonvanilla,pycharm,visualstudiocode,visualstudio,pycharm+all,git,virtualenv,autohotkey
-
 ### Autohotkey ###
 # Windows image file caches
 Thumbs.db
@@ -859,4 +856,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/venv,python,pythonvanilla,pycharm,visualstudiocode,visualstudio,pycharm+all,git,virtualenv,autohotkey
+home-store.py
