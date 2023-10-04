@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>626</height>
+    <height>469</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -562,6 +562,78 @@ QPushButton:hover {
     </property>
     <property name="text">
      <string>КлиникБук</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="CloseProgram">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>1</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border: 0;
+	color: white;
+	font: 15pt &quot;Segoe UI&quot;;
+}
+
+QPushButton:hover {
+	border-radius: 7px;
+	background-color: #a85973;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>🞬</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="HideProgram">
+    <property name="geometry">
+     <rect>
+      <x>59</x>
+      <y>1</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border: 0;
+	color: white;
+	font: 900 15pt &quot;Segoe UI&quot;;
+}
+
+QPushButton:hover {
+	border-radius: 7px;
+	background-color: #a85973;
+}</string>
+    </property>
+    <property name="text">
+     <string>–</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

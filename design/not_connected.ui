@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>462</height>
+    <width>567</width>
+    <height>469</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,11 +24,6 @@
      <width>571</width>
      <height>441</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <bold>false</bold>
-    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">QFrame {
@@ -123,12 +118,15 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="SIGNUP">
+     <property name="lineWidth">
+      <number>5</number>
+     </property>
+     <widget class="QLabel" name="MainText">
       <property name="geometry">
        <rect>
         <x>18</x>
         <y>30</y>
-        <width>101</width>
+        <width>251</width>
         <height>31</height>
        </rect>
       </property>
@@ -136,43 +134,57 @@
        <string notr="true">QFrame {
 	background-color: 0;
 	color: #ca3767;
-	font: 500 16pt &quot;Montserrat Medium&quot;;	
+	font: 500 11pt &quot;Montserrat Medium&quot;;	
 }
 </string>
       </property>
       <property name="text">
-       <string>Sign Up</string>
+       <string>Нет подключения к интернету</string>
       </property>
      </widget>
-     <widget class="QLabel" name="UserName">
-      <property name="geometry">
-       <rect>
-        <x>19</x>
-        <y>80</y>
-        <width>71</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QFrame {
-	background-color: 0;
-	color: #ca3767;
-	font: 500 9pt &quot;Montserrat Medium&quot;;	
-}
-</string>
-      </property>
-      <property name="text">
-       <string>User Name:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Password">
+     <widget class="QPushButton" name="ReloadButton">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>160</y>
-        <width>71</width>
-        <height>21</height>
+        <y>200</y>
+        <width>241</width>
+        <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	background-color: #ca3767;
+	color: white;
+	border: 0;
+	font: 500 10pt &quot;Montserrat Medium&quot;;	
+}
+
+QPushButton:hover {
+	background-color: #CA378A;
+}
+</string>
+      </property>
+      <property name="text">
+       <string>reload</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Texts">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>241</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::DefaultContextMenu</enum>
+      </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame {
@@ -182,247 +194,56 @@
 }
 </string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
       <property name="text">
-       <string>Password:</string>
+       <string>К сожалению, в данный момент отсутствует подключение к интернету. Для работы этой программы требуется активное интернет-соединение. Пожалуйста, проверьте свое подключение и повторите попытку позже.</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="openExternalLinks">
+       <bool>false</bool>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse</set>
       </property>
      </widget>
      <widget class="Line" name="line">
+      <property name="windowModality">
+       <enum>Qt::NonModal</enum>
+      </property>
       <property name="geometry">
        <rect>
-        <x>15</x>
-        <y>123</y>
-        <width>190</width>
-        <height>3</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QFrame {
-	background-color: #ca3767;
-}
-</string>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="Line" name="line_2">
-      <property name="geometry">
-       <rect>
-        <x>16</x>
-        <y>204</y>
-        <width>190</width>
-        <height>3</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QFrame {
-	background-color: #ca3767;
-}
-</string>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="GetPassword">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
+        <x>19</x>
         <y>180</y>
-        <width>181</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="tabletTracking">
-       <bool>false</bool>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLineEdit {
-	background-color: 0;
-	color: #ca3767;
-	border: 0;
-	font: 500 9pt &quot;Montserrat Medium&quot;;	
-}
-</string>
-      </property>
-      <property name="inputMask">
-       <string/>
-      </property>
-      <property name="maxLength">
-       <number>20</number>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
-      </property>
-      <property name="cursorPosition">
-       <number>0</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-      <property name="dragEnabled">
-       <bool>false</bool>
-      </property>
-      <property name="readOnly">
-       <bool>false</bool>
-      </property>
-      <property name="placeholderText">
-       <string>Password</string>
-      </property>
-      <property name="cursorMoveStyle">
-       <enum>Qt::LogicalMoveStyle</enum>
-      </property>
-      <property name="clearButtonEnabled">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="GetUserName">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>100</y>
-        <width>181</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="tabletTracking">
-       <bool>false</bool>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLineEdit {
-	background-color: 0;
-	color: #ca3767;
-	border: 0;
-	font: 500 9pt &quot;Montserrat Medium&quot;;	
-}
-</string>
-      </property>
-      <property name="inputMask">
-       <string/>
-      </property>
-      <property name="maxLength">
-       <number>10</number>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Normal</enum>
-      </property>
-      <property name="cursorPosition">
-       <number>0</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-      <property name="dragEnabled">
-       <bool>false</bool>
-      </property>
-      <property name="readOnly">
-       <bool>false</bool>
-      </property>
-      <property name="placeholderText">
-       <string>User name</string>
-      </property>
-      <property name="cursorMoveStyle">
-       <enum>Qt::LogicalMoveStyle</enum>
-      </property>
-      <property name="clearButtonEnabled">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="AgreeCond">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>240</y>
-        <width>271</width>
-        <height>20</height>
+        <width>241</width>
+        <height>2</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QCheckBox {
-	background-color: 0;
-	color: #ca3767;
-	border: 0;
-	font: 700 7pt &quot;Montserrat Medium&quot;;	
-}
-</string>
-      </property>
-      <property name="text">
-       <string>I Agree Terms Of Service And Conditions</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="SignUpButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>270</y>
-        <width>251</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
+       <string notr="true">QFrame {
 	background-color: #ca3767;
-	color: white;
-	border: 0;
-	font: 500 10pt &quot;Montserrat Medium&quot;;	
-}
-
-QPushButton:hover {
-	background-color: #CA378A;
-}</string>
-      </property>
-      <property name="text">
-       <string>Sign Up</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="RegisterButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>310</y>
-        <width>251</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-	background-color: #ca3767;
-	color: white;
-	border: 0;
-	font: 500 10pt &quot;Montserrat Medium&quot;;	
-}
-
-QPushButton:hover {
-	background-color: #CA378A;
 }
 </string>
       </property>
-      <property name="text">
-       <string>Register</string>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <zorder>line</zorder>
-     <zorder>SIGNUP</zorder>
-     <zorder>UserName</zorder>
-     <zorder>Password</zorder>
-     <zorder>line_2</zorder>
-     <zorder>GetPassword</zorder>
-     <zorder>GetUserName</zorder>
-     <zorder>AgreeCond</zorder>
-     <zorder>SignUpButton</zorder>
-     <zorder>RegisterButton</zorder>
     </widget>
    </widget>
    <widget class="QFrame" name="frame_2">
@@ -497,7 +318,7 @@ QPushButton:hover {
    <widget class="QPushButton" name="HideProgram">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>59</x>
       <y>1</y>
       <width>31</width>
       <height>31</height>

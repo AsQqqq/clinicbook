@@ -29,7 +29,19 @@
 
 
 ---
-<h3>test:</h3>
+<h3>Из UI в PY:</h3>
 
-    flet pack main.py --icon .\icons\favicon.png
+    pyuic5.exe -x [name].ui -o [name].py
+---
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+---
+<h3>Из QRC в PY:</h3>
+
+    pyrcc5.exe [name].ui -o [name].py
 ---
