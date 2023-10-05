@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>504</height>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -162,7 +162,29 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="GetNunbmer">
+    <widget class="Line" name="line">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>300</width>
+       <height>3</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+	background-color: #ca3767;
+}
+</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="UserFullName">
      <property name="geometry">
       <rect>
        <x>24</x>
@@ -180,10 +202,68 @@
 </string>
      </property>
      <property name="text">
-      <string>Горячая линия</string>
+      <string>Фамилия, Имя, Отчество:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Setting">
+    <widget class="QLineEdit" name="GetUserFullName">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>87</y>
+       <width>291</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="tabletTracking">
+      <bool>false</bool>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
+	background-color: 0;
+	color: #ca3767;
+	border: 0;
+	font: 500 9pt &quot;Montserrat Medium&quot;;	
+}
+</string>
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="maxLength">
+      <number>60</number>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Normal</enum>
+     </property>
+     <property name="cursorPosition">
+      <number>0</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="dragEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="readOnly">
+      <bool>false</bool>
+     </property>
+     <property name="placeholderText">
+      <string>ФИО</string>
+     </property>
+     <property name="cursorMoveStyle">
+      <enum>Qt::LogicalMoveStyle</enum>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="SIGNUP">
      <property name="geometry">
       <rect>
        <x>23</x>
@@ -201,7 +281,7 @@
 </string>
      </property>
      <property name="text">
-      <string>Настройки</string>
+      <string>Запись на приём</string>
      </property>
     </widget>
     <widget class="QLabel" name="DateUser">
@@ -222,16 +302,92 @@
 </string>
      </property>
      <property name="text">
-      <string>Тема</string>
+      <string>Дата рождения:</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="ThemeChange">
+    <widget class="Line" name="line_2">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>170</y>
-       <width>151</width>
-       <height>51</height>
+       <y>180</y>
+       <width>300</width>
+       <height>3</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+	background-color: #ca3767;
+}
+</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="DateEditUser">
+     <property name="geometry">
+      <rect>
+       <x>28</x>
+       <y>160</y>
+       <width>71</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QDateEdit {
+	background-color: 0;
+	color: #ca3767;
+	border: 0;
+	font: 500 9pt &quot;Montserrat Medium&quot;;	
+}
+</string>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhPreferNumbers</set>
+     </property>
+     <property name="wrapping">
+      <bool>false</bool>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>false</bool>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="maximumDate">
+      <date>
+       <year>3000</year>
+       <month>12</month>
+       <day>31</day>
+      </date>
+     </property>
+     <property name="minimumDate">
+      <date>
+       <year>1799</year>
+       <month>9</month>
+       <day>14</day>
+      </date>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="SignUpClinicButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>240</y>
+       <width>300</width>
+       <height>24</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -244,32 +400,69 @@
 
 QPushButton:hover {
 	background-color: #CA378A;
+}
+
+QPushButton:disabled,
+QPushButton[disabled]{
+  background-color: #c298a6;
+  color: white;
 }</string>
      </property>
      <property name="text">
-      <string>сменить</string>
+      <string>Записаться</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Number">
+    <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>90</y>
-       <width>141</width>
-       <height>16</height>
+       <x>340</x>
+       <y>0</y>
+       <width>51</width>
+       <height>31</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QFrame {
-	background-color: 0;
-	color: red;
-	font: 500 9pt &quot;Montserrat Medium&quot;;	
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="rubutton_2">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	border: 0;
+	color: #ca3767;
+	font: 9pt &quot;Montserrat&quot;;
 }
-</string>
-     </property>
-     <property name="text">
-      <string>8 - (800) - 555 - 35 - 35</string>
-     </property>
+
+QPushButton:hover {
+	background-color: #CA378A;
+	border-radius: 2px;
+	color: white;
+}</string>
+        </property>
+        <property name="text">
+         <string>EN</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="rubutton">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	border: 0;
+	color: #ca3767;
+	font: 9pt &quot;Montserrat&quot;;
+}
+
+QPushButton:hover {
+	background-color: #CA378A;
+	border-radius: 2px;
+	color: white;
+}</string>
+        </property>
+        <property name="text">
+         <string>RU</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -314,17 +507,11 @@ QPushButton:hover {
       <widget class="QPushButton" name="HomeButton">
        <property name="styleSheet">
         <string notr="true">QPushButton {
-	color: white;
-	border: 0;
-	height: 40;
-}
-
-QPushButton:hover {
 	color: black;
 	background-color: white;
-	border: 2px solid white;
+	height: 40;
+	border: 0;
 }
-
 </string>
        </property>
        <property name="text">
@@ -352,11 +539,17 @@ QPushButton:hover {
       <widget class="QPushButton" name="SettingButton">
        <property name="styleSheet">
         <string notr="true">QPushButton {
+	color: white;
+	border: 0;
+	height: 40;
+}
+
+QPushButton:hover {
 	color: black;
 	background-color: white;
-	height: 40;
-	border: 0;
+	border: 2px solid white;
 }
+
 </string>
        </property>
        <property name="text">
@@ -381,32 +574,6 @@ QPushButton:hover {
       </spacer>
      </item>
     </layout>
-   </widget>
-   <widget class="QPushButton" name="CloseProgram">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>1</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-	border: 0;
-	color: white;
-	font: 15pt &quot;Segoe UI&quot;;
-}
-
-QPushButton:hover {
-	border-radius: 7px;
-	background-color: #a85973;
-}
-</string>
-    </property>
-    <property name="text">
-     <string>🞬</string>
-    </property>
    </widget>
    <widget class="QPushButton" name="HideProgram">
     <property name="geometry">
@@ -452,6 +619,32 @@ QPushButton:hover {
     </property>
     <property name="autoDefault">
      <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="CloseProgram">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>1</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border: 0;
+	color: white;
+	font: 15pt &quot;Segoe UI&quot;;
+}
+
+QPushButton:hover {
+	border-radius: 7px;
+	background-color: #a85973;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>🞬</string>
     </property>
    </widget>
   </widget>

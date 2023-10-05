@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\login_design.ui'
+# Form implementation generated from reading ui file '.\register_design.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,13 +14,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(600, 477)
+        MainWindow.resize(600, 469)
         self.MainBackground = QtWidgets.QFrame(MainWindow)
         self.MainBackground.setEnabled(True)
         self.MainBackground.setGeometry(QtCore.QRect(20, 10, 571, 441))
-        font = QtGui.QFont()
-        font.setBold(False)
-        self.MainBackground.setFont(font)
         self.MainBackground.setStyleSheet("QFrame {\n"
 "    height:100%; margin:0;\n"
 "    background-color: #ca3767;\n"
@@ -62,7 +59,7 @@ class Ui_MainWindow(object):
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.SIGNUP = QtWidgets.QLabel(self.frame)
-        self.SIGNUP.setGeometry(QtCore.QRect(18, 30, 101, 31))
+        self.SIGNUP.setGeometry(QtCore.QRect(18, 30, 241, 31))
         self.SIGNUP.setStyleSheet("QFrame {\n"
 "    background-color: 0;\n"
 "    color: #ca3767;\n"
@@ -71,7 +68,7 @@ class Ui_MainWindow(object):
 "")
         self.SIGNUP.setObjectName("SIGNUP")
         self.UserName = QtWidgets.QLabel(self.frame)
-        self.UserName.setGeometry(QtCore.QRect(19, 80, 71, 21))
+        self.UserName.setGeometry(QtCore.QRect(19, 80, 121, 21))
         self.UserName.setStyleSheet("QFrame {\n"
 "    background-color: 0;\n"
 "    color: #ca3767;\n"
@@ -80,7 +77,7 @@ class Ui_MainWindow(object):
 "")
         self.UserName.setObjectName("UserName")
         self.Password = QtWidgets.QLabel(self.frame)
-        self.Password.setGeometry(QtCore.QRect(20, 160, 71, 21))
+        self.Password.setGeometry(QtCore.QRect(20, 160, 131, 21))
         self.Password.setStyleSheet("QFrame {\n"
 "    background-color: 0;\n"
 "    color: #ca3767;\n"
@@ -150,10 +147,34 @@ class Ui_MainWindow(object):
         self.GetUserName.setCursorMoveStyle(QtCore.Qt.LogicalMoveStyle)
         self.GetUserName.setClearButtonEnabled(False)
         self.GetUserName.setObjectName("GetUserName")
+        self.AgreeCond = QtWidgets.QCheckBox(self.frame)
+        self.AgreeCond.setGeometry(QtCore.QRect(10, 320, 16, 20))
+        self.AgreeCond.setStyleSheet("QCheckBox {\n"
+"    background-color: 0;\n"
+"    color: #ca3767;\n"
+"    border: 0;\n"
+"    font: 700 7pt \"Montserrat Medium\";    \n"
+"}\n"
+"")
+        self.AgreeCond.setText("")
+        self.AgreeCond.setObjectName("AgreeCond")
         self.SignUpButton = QtWidgets.QPushButton(self.frame)
-        self.SignUpButton.setEnabled(False)
-        self.SignUpButton.setGeometry(QtCore.QRect(10, 240, 251, 24))
+        self.SignUpButton.setGeometry(QtCore.QRect(110, 390, 41, 24))
         self.SignUpButton.setStyleSheet("QPushButton {\n"
+"    background-color: 0;\n"
+"    color: #0000FF;\n"
+"    border: 0;\n"
+"    font: 500 6pt \"Montserrat Medium\";    \n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: #FF0000;\n"
+"}")
+        self.SignUpButton.setObjectName("SignUpButton")
+        self.RegisterButton = QtWidgets.QPushButton(self.frame)
+        self.RegisterButton.setEnabled(False)
+        self.RegisterButton.setGeometry(QtCore.QRect(10, 350, 251, 24))
+        self.RegisterButton.setStyleSheet("QPushButton {\n"
 "    background-color: #ca3767;\n"
 "    color: white;\n"
 "    border: 0;\n"
@@ -170,21 +191,81 @@ class Ui_MainWindow(object):
 "  color: white;\n"
 "}\n"
 "")
-        self.SignUpButton.setObjectName("SignUpButton")
-        self.RegisterButton = QtWidgets.QPushButton(self.frame)
-        self.RegisterButton.setGeometry(QtCore.QRect(10, 280, 251, 24))
-        self.RegisterButton.setStyleSheet("QPushButton {\n"
-"    background-color: #ca3767;\n"
-"    color: white;\n"
+        self.RegisterButton.setObjectName("RegisterButton")
+        self.GetPassword_2 = QtWidgets.QLineEdit(self.frame)
+        self.GetPassword_2.setGeometry(QtCore.QRect(20, 266, 181, 22))
+        self.GetPassword_2.setTabletTracking(False)
+        self.GetPassword_2.setAutoFillBackground(False)
+        self.GetPassword_2.setStyleSheet("QLineEdit {\n"
+"    background-color: 0;\n"
+"    color: #ca3767;\n"
 "    border: 0;\n"
-"    font: 500 10pt \"Montserrat Medium\";    \n"
+"    font: 500 9pt \"Montserrat Medium\";    \n"
+"}\n"
+"")
+        self.GetPassword_2.setInputMask("")
+        self.GetPassword_2.setMaxLength(20)
+        self.GetPassword_2.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.GetPassword_2.setCursorPosition(0)
+        self.GetPassword_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.GetPassword_2.setDragEnabled(False)
+        self.GetPassword_2.setReadOnly(False)
+        self.GetPassword_2.setCursorMoveStyle(QtCore.Qt.LogicalMoveStyle)
+        self.GetPassword_2.setClearButtonEnabled(False)
+        self.GetPassword_2.setObjectName("GetPassword_2")
+        self.Password_2 = QtWidgets.QLabel(self.frame)
+        self.Password_2.setGeometry(QtCore.QRect(20, 246, 131, 21))
+        self.Password_2.setStyleSheet("QFrame {\n"
+"    background-color: 0;\n"
+"    color: #ca3767;\n"
+"    font: 500 9pt \"Montserrat Medium\";    \n"
+"}\n"
+"")
+        self.Password_2.setObjectName("Password_2")
+        self.line_3 = QtWidgets.QFrame(self.frame)
+        self.line_3.setGeometry(QtCore.QRect(16, 290, 190, 3))
+        self.line_3.setAutoFillBackground(False)
+        self.line_3.setStyleSheet("QFrame {\n"
+"    background-color: #ca3767;\n"
+"}\n"
+"")
+        self.line_3.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_3.setObjectName("line_3")
+        self.horizontalLayoutWidget = QtWidgets.QWidget(self.frame)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(230, 10, 51, 31))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.rubutton_2 = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.rubutton_2.setStyleSheet("QPushButton {\n"
+"    border: 0;\n"
+"    color: #ca3767;\n"
+"    font: 9pt \"Montserrat\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
 "    background-color: #CA378A;\n"
+"    border-radius: 2px;\n"
+"    color: white;\n"
+"}")
+        self.rubutton_2.setObjectName("rubutton_2")
+        self.horizontalLayout.addWidget(self.rubutton_2)
+        self.rubutton = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.rubutton.setStyleSheet("QPushButton {\n"
+"    border: 0;\n"
+"    color: #ca3767;\n"
+"    font: 9pt \"Montserrat\";\n"
 "}\n"
-"")
-        self.RegisterButton.setObjectName("RegisterButton")
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #CA378A;\n"
+"    border-radius: 2px;\n"
+"    color: white;\n"
+"}")
+        self.rubutton.setObjectName("rubutton")
+        self.horizontalLayout.addWidget(self.rubutton)
         self.line.raise_()
         self.SIGNUP.raise_()
         self.UserName.raise_()
@@ -192,8 +273,13 @@ class Ui_MainWindow(object):
         self.line_2.raise_()
         self.GetPassword.raise_()
         self.GetUserName.raise_()
+        self.AgreeCond.raise_()
         self.SignUpButton.raise_()
         self.RegisterButton.raise_()
+        self.GetPassword_2.raise_()
+        self.Password_2.raise_()
+        self.line_3.raise_()
+        self.horizontalLayoutWidget.raise_()
         self.frame_2 = QtWidgets.QFrame(self.MainBackground)
         self.frame_2.setGeometry(QtCore.QRect(55, 96, 151, 171))
         self.frame_2.setStyleSheet("QFrame {\n"
@@ -227,7 +313,7 @@ class Ui_MainWindow(object):
 "")
         self.CloseProgram.setObjectName("CloseProgram")
         self.HideProgram = QtWidgets.QPushButton(self.MainBackground)
-        self.HideProgram.setGeometry(QtCore.QRect(60, 1, 31, 31))
+        self.HideProgram.setGeometry(QtCore.QRect(59, 1, 31, 31))
         self.HideProgram.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.HideProgram.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.HideProgram.setStyleSheet("QPushButton {\n"
@@ -253,13 +339,17 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Form"))
-        self.SIGNUP.setText(_translate("MainWindow", "Sign Up"))
-        self.UserName.setText(_translate("MainWindow", "User Name:"))
-        self.Password.setText(_translate("MainWindow", "Password:"))
+        self.SIGNUP.setText(_translate("MainWindow", "Create your account"))
+        self.UserName.setText(_translate("MainWindow", "Account name:"))
+        self.Password.setText(_translate("MainWindow", "Choose password:"))
         self.GetPassword.setPlaceholderText(_translate("MainWindow", "Password"))
         self.GetUserName.setPlaceholderText(_translate("MainWindow", "User name"))
         self.SignUpButton.setText(_translate("MainWindow", "Sign Up"))
         self.RegisterButton.setText(_translate("MainWindow", "Register"))
+        self.GetPassword_2.setPlaceholderText(_translate("MainWindow", "Password"))
+        self.Password_2.setText(_translate("MainWindow", "Confirm password"))
+        self.rubutton_2.setText(_translate("MainWindow", "EN"))
+        self.rubutton.setText(_translate("MainWindow", "RU"))
         self.ClinicBook.setText(_translate("MainWindow", "КлиникБук"))
         self.CloseProgram.setText(_translate("MainWindow", "🞬"))
         self.HideProgram.setText(_translate("MainWindow", "–"))

@@ -6,8 +6,8 @@
         "placeholderlogin": "Логин",
         "labelpassword": "Ваш пароль",
         "placeholderpassword": "Пароль",
-        "signupbutton": "Войти",
-        "registerbutton": "Создать аккаунт"
+        "registerbutton": "Создать аккаунт",
+        "signupbutton": "Войти"
     },
     "Register": {
         "programlogo": "КлиникБук",
@@ -17,8 +17,6 @@
         "labelpassword": "Придумайте пароль",
         "placeholderpassword": "Пароль",
         "labelconfirmpassword": "Повторите пароль",
-        "offer": "Я Согласен с Условиями Предоставления Услуг",
-        "registerbutton": "Создать аккаунт",
-        "signupbutton": "Войти"
+        "offer": "Я Согласен с условиями"
     }
 }

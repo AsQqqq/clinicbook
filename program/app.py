@@ -8,18 +8,105 @@ from database import database as db
 import login_layout
 import register_layout
 
+agent_url = 'https://127.0.0.1:12300'
+
+import json
+
+def loadTranslations():
+    translations = {}
+
+    with open('language/ru_RU.json','r', encoding='utf-8') as f:
+        translations['ru_RU'] = json.load(f)
+
+    with open('language/en_US.json','r', encoding='utf-8') as f:
+        translations['en_US'] = json.load(f)
+
+    return translations
+
 
 class CommonApp(QWidget):
+    change_language = pyqtSignal(str)
     switch_window = pyqtSignal()   # Signal
 
     def __init__(self, parent=None) -> None:
         super(CommonApp, self).__init__(parent)
+        self.translations = loadTranslations()
+        self.current_language = 'en_US'
+
+        try:
+            with open('language/settings.json', 'r') as settings_file:
+                settings = json.load(settings_file)
+                self.current_language = settings.get('language', 'en_US')
+        except FileNotFoundError:
+            print("FAIL")
+            self.current_language = 'en_US'
+
         self.setFixedSize(self.size())
         self.m_drag = False
         self.m_DragPosition = QPoint()
 
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
+    
+    def setLanguage(self, lang: str):
+        """ Устанавливает язык приложения """
+        with open('language/settings.json', 'w') as settings_file:
+            json.dump({'language': lang}, settings_file)
+    
+        self.current_language = lang
+        translations = self.translations[self.current_language]
+
+        if isinstance(self, LoginApp):
+            #Перевод для LoginApp
+            self.ClinicBook.setText(translations["SignUp"]["programlogo"])
+            self.SIGNUP.setText(translations["SignUp"]["title"])
+            self.UserName.setText(translations["SignUp"]["labellogin"])
+            self.GetUserName.setPlaceholderText(translations["SignUp"]["placeholderlogin"])
+            self.Password.setText(translations["SignUp"]["labelpassword"])
+            self.GetPassword.setPlaceholderText(translations["SignUp"]["placeholderlogin"])
+            self.SignUpButton.setText(translations["SignUp"]["signupbutton"])
+            self.RegisterButton.setText(translations["SignUp"]["registerbutton"])
+
+        elif isinstance(self, RegisterApp):
+            #Перевод для RegisterApp
+            self.ClinicBook.setText(translations["Register"]["programlogo"])
+            self.SIGNUP.setText(translations["Register"]["title"])
+            self.UserName.setText(translations["Register"]["labellogin"])
+            self.GetUserName.setPlaceholderText(translations["Register"]["placeholderlogin"])
+            self.Password.setText(translations["Register"]["labelpassword"])
+            self.GetPassword.setPlaceholderText(translations["Register"]["placeholderpassword"])
+            self.Password_2.setText(translations["Register"]["labelconfirmpassword"])
+            self.GetPassword_2.setPlaceholderText(translations["Register"]["placeholderpassword"])
+
+            style_str = '''
+            QLabel
+            {
+                background-color: transparent;
+                color: #ca3767;
+                font: 400 7pt "Montserrat Medium";
+            }
+            '''
+
+            self.label = QtWidgets.QLabel(self)
+            self.label.setStyleSheet(style_str)
+            self.label.setGeometry(QtCore.QRect(309, 321, 400, 17))  # Coordinate accordingly to the layout
+            self.label.setTextFormat(QtCore.Qt.RichText)
+            self.label.setTextInteractionFlags(QtCore.Qt.TextBrowserInteraction)
+            self.label.setOpenExternalLinks(True)
+
+            link_text = translations["Register"]["offer"]
+            text = " ".join(link_text.split(' ')[:3])
+            link_message = " ".join(link_text.split(' ')[3:])
+            self.label.setText(f'{text} <a href="{agent_url}">{link_message}</a>')
+            
+            self.RegisterButton.setText(translations["SignUp"]["registerbutton"])
+            self.SignUpButton.setText(translations["SignUp"]["signupbutton"])
+
+    def en_US(self) -> None:
+        self.change_language.emit('en_US')
+
+    def ru_RU(self) -> None:
+        self.change_language.emit('ru_RU')
 
     def hideWindow(self) -> None:
         """To minimize the window"""
@@ -53,6 +140,7 @@ class LoginApp(CommonApp, login_layout.Ui_MainWindow):
     def __init__(self, parent=None) -> None:
         super(LoginApp, self).__init__(parent)
         self.setupUi(self)
+        self.setLanguage(self.current_language)
 
         self.setFixedSize(self.size())
         self.m_drag = False
@@ -63,6 +151,9 @@ class LoginApp(CommonApp, login_layout.Ui_MainWindow):
 
         self.HideProgram.clicked.connect(self.hideWindow)
         self.CloseProgram.clicked.connect(self.closeWindow)
+
+        self.rubutton.clicked.connect(self.ru_RU)
+        self.rubutton_2.clicked.connect(self.en_US)
 
         self.connected()
     
@@ -120,6 +211,7 @@ class RegisterApp(CommonApp, register_layout.Ui_MainWindow):
     def __init__(self, parent=None) -> None:
         super(RegisterApp, self).__init__(parent)
         self.setupUi(self)
+        self.setLanguage(self.current_language)
 
         self.setFixedSize(self.size())
         self.m_drag = False
@@ -130,6 +222,9 @@ class RegisterApp(CommonApp, register_layout.Ui_MainWindow):
         
         self.HideProgram.clicked.connect(self.hideWindow)
         self.CloseProgram.clicked.connect(self.closeWindow)
+
+        self.rubutton.clicked.connect(self.ru_RU)
+        self.rubutton_2.clicked.connect(self.en_US)
 
         self.connected()
 
@@ -209,13 +304,20 @@ class MainApp(QtWidgets.QApplication):
 
         self.login = LoginApp()
         self.register = RegisterApp()
-    
+
         self.login.switch_window.connect(self.show_register)
         self.register.switch_window.connect(self.show_login)
-       
+
+        self.login.change_language.connect(self.updateLanguage)
+        self.register.change_language.connect(self.updateLanguage)
+
         self.login.show()
         
     """---------------"""
+    
+    def updateLanguage(self, lang: str) -> None:
+        self.login.setLanguage(lang)
+        self.register.setLanguage(lang)
 
     def get_position(self):
         """Get the position of the currently active window"""

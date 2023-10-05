@@ -1,7 +1,7 @@
 {
     "SignUp": {
         "programlogo": "ClinicBook",
-        "title": "Authorization",
+        "title": "Log in",
         "labellogin": "Your login",
         "placeholderlogin": "login",
         "labelpassword": "Your password",
@@ -17,7 +17,7 @@
         "labelpassword": "Account password",
         "placeholderpassword": "Password",
         "labelconfirmpassword": "Confirm password",
-        "offer": "I Agree to the Terms of Service",
+        "offer": "I agree to the terms",
         "registerbutton": "Create an account",
         "signupbutton": "Sign up"
     }
