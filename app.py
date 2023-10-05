@@ -1,15 +1,12 @@
-import os
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QWidget, QDesktopWidget, QApplication
-from PyQt5.QtCore import Qt, QPoint, pyqtSignal, QTimer
-from PyQt5.QtCore import QRunnable, QThreadPool
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtCore import Qt, QPoint, pyqtSignal
+
 from database import database as db
 from database import connected as connected_database
+
 import login_layout
 import register_layout
-
-
-from PyQt5.QtCore import QMetaObject
 
 
 class CommonApp(QWidget):
@@ -47,8 +44,6 @@ class CommonApp(QWidget):
 
     def mouseReleaseEvent(self, event):
         self.m_drag = False
-
-
 
 
 class LoginApp(CommonApp, login_layout.Ui_MainWindow):
@@ -118,8 +113,6 @@ class LoginApp(CommonApp, login_layout.Ui_MainWindow):
         self.button_enable()
 
 
-
-
 class RegisterApp(CommonApp, register_layout.Ui_MainWindow):
     switch_window = pyqtSignal() # Сигнал
 
@@ -144,9 +137,60 @@ class RegisterApp(CommonApp, register_layout.Ui_MainWindow):
         """Подключение кнопок"""
         self.SignUpButton.clicked.connect(self.switchToLogin)
 
+        self.GetUserName.textChanged.connect(self.getTextUser)
+        self.GetPassword.textChanged.connect(self.getTextPassword)
+        self.GetPassword_2.textChanged.connect(self.getTextPassword_2)
+        self.AgreeCond.toggled.connect(self.checkBoxChecked)
+
+        self.user_text: bool = False
+        self.password_text: bool = False
+        self.password_text_2: bool = False
+        self.check_box_status: bool = False
+
+        self.password_1: str = None
+        self.password_2: str = None
+
+        self.button_enable() # Проверка состояния полей и флажка при запуске приложения
+        self.RegisterButton.setEnabled(False)
+
     def switchToLogin(self) -> None:
         """Переключение между окнами"""
         self.switch_window.emit()
+    
+
+
+    def button_enable(self) -> None:
+        """Проверка на поля(выключение кнопки)"""
+        if len(self.GetUserName.text()) >= 2 and len(self.GetPassword.text()) >= 7 \
+                        and self.AgreeCond.isChecked() and self.password_1 == self.password_2:
+            self.RegisterButton.setEnabled(True)
+        else:
+            self.RegisterButton.setEnabled(False)
+
+    def getTextUser(self, text) -> None:
+        """Что ввёл пользователь в поле User Name?"""
+        self.user_text = bool(text)
+        self.button_enable()
+
+    def getTextPassword(self, text) -> None:
+        """Что ввёл пользователь в поле Password?"""
+        self.password_text = bool(text)
+        self.password_1 = text
+        self.button_enable()
+    
+    def getTextPassword_2(self, text) -> None:
+        """Что ввёл пользователь в поле Password?"""
+        self.password_text_2 = bool(text)
+        self.password_2 = text
+        self.button_enable()
+    
+    def checkBoxChecked(self, state):
+        """Что ввёл пользователь в поле CheckBox?"""
+        if state:
+            self.check_box_status = True
+        else:
+            self.check_box_status = False
+        self.button_enable()
 
 
 class MainApp(QtWidgets.QApplication):
@@ -170,7 +214,6 @@ class MainApp(QtWidgets.QApplication):
         else:
             return QtCore.QPoint(0, 0)
 
-
     def show_register(self):
         """Switch between windows"""
         window_pos = self.get_position()
@@ -184,12 +227,6 @@ class MainApp(QtWidgets.QApplication):
         self.login.move(window_pos)
         self.login.show()
         self.register.close()
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
