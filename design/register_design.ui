@@ -383,6 +383,9 @@ QPushButton:hover {
       </property>
      </widget>
      <widget class="QPushButton" name="RegisterButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -401,6 +404,12 @@ QPushButton:hover {
 
 QPushButton:hover {
 	background-color: #CA378A;
+}
+
+QPushButton:disabled,
+QPushButton[disabled]{
+  background-color: #c298a6;
+  color: white;
 }
 </string>
       </property>

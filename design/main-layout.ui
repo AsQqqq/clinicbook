@@ -379,6 +379,9 @@
      </property>
     </widget>
     <widget class="QPushButton" name="SignUpClinicButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -397,6 +400,12 @@
 
 QPushButton:hover {
 	background-color: #CA378A;
+}
+
+QPushButton:disabled,
+QPushButton[disabled]{
+  background-color: #c298a6;
+  color: white;
 }</string>
      </property>
      <property name="text">

@@ -171,6 +171,7 @@ class Ui_MainWindow(object):
 "}")
         self.SignUpButton.setObjectName("SignUpButton")
         self.RegisterButton = QtWidgets.QPushButton(self.frame)
+        self.RegisterButton.setEnabled(False)
         self.RegisterButton.setGeometry(QtCore.QRect(10, 350, 251, 24))
         self.RegisterButton.setStyleSheet("QPushButton {\n"
 "    background-color: #ca3767;\n"
@@ -181,6 +182,12 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:hover {\n"
 "    background-color: #CA378A;\n"
+"}\n"
+"\n"
+"QPushButton:disabled,\n"
+"QPushButton[disabled]{\n"
+"  background-color: #c298a6;\n"
+"  color: white;\n"
 "}\n"
 "")
         self.RegisterButton.setObjectName("RegisterButton")

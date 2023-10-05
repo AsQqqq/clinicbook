@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>462</height>
+    <height>477</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -363,6 +363,9 @@
       </property>
      </widget>
      <widget class="QPushButton" name="SignUpButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -381,7 +384,14 @@
 
 QPushButton:hover {
 	background-color: #CA378A;
-}</string>
+}
+
+QPushButton:disabled,
+QPushButton[disabled]{
+  background-color: #c298a6;
+  color: white;
+}
+</string>
       </property>
       <property name="text">
        <string>Sign Up</string>

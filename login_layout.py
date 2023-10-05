@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(600, 462)
+        MainWindow.resize(600, 477)
         self.MainBackground = QtWidgets.QFrame(MainWindow)
         self.MainBackground.setEnabled(True)
         self.MainBackground.setGeometry(QtCore.QRect(20, 10, 571, 441))
@@ -161,6 +161,7 @@ class Ui_MainWindow(object):
 "")
         self.AgreeCond.setObjectName("AgreeCond")
         self.SignUpButton = QtWidgets.QPushButton(self.frame)
+        self.SignUpButton.setEnabled(False)
         self.SignUpButton.setGeometry(QtCore.QRect(10, 270, 251, 24))
         self.SignUpButton.setStyleSheet("QPushButton {\n"
 "    background-color: #ca3767;\n"
@@ -171,7 +172,14 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton:hover {\n"
 "    background-color: #CA378A;\n"
-"}")
+"}\n"
+"\n"
+"QPushButton:disabled,\n"
+"QPushButton[disabled]{\n"
+"  background-color: #c298a6;\n"
+"  color: white;\n"
+"}\n"
+"")
         self.SignUpButton.setObjectName("SignUpButton")
         self.RegisterButton = QtWidgets.QPushButton(self.frame)
         self.RegisterButton.setGeometry(QtCore.QRect(10, 310, 251, 24))
