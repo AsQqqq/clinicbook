@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import Qt, QPoint, pyqtSignal
 
 from database import database as db
-from database import connected as connected_database
+# from database import connected as connected_database
 
 import login_layout
 import register_layout
@@ -72,16 +72,22 @@ class LoginApp(CommonApp, login_layout.Ui_MainWindow):
         
         self.GetUserName.textChanged.connect(self.getTextUser)
         self.GetPassword.textChanged.connect(self.getTextPassword)
-        self.AgreeCond.toggled.connect(self.checkBoxChecked)
-
-        self.SignUpButton.setDisabled(True)
 
         self.user_text: bool = False
         self.password_text: bool = False
-        self.check_box_status: bool = False
+
+        self.user_name: str = None
+        self.password_1: str = None
 
         self.button_enable() # Проверка состояния полей и флажка при запуске приложения
         self.SignUpButton.setEnabled(False)
+
+        self.SignUpButton.clicked.connect(self.signup)
+    
+    def signup(self) -> None:
+        status = db().selectLoginPassword(login=self.user_name, password=self.password_1)
+        if status:
+            pass
     
     def switchToRegister(self) -> None:
         """Переключение между окнами"""
@@ -89,7 +95,7 @@ class LoginApp(CommonApp, login_layout.Ui_MainWindow):
     
     def button_enable(self) -> None:
         """Проверка на поля(выключение кнопки)"""
-        if len(self.GetUserName.text()) >= 2 and len(self.GetPassword.text()) >= 7 and self.AgreeCond.isChecked():
+        if len(self.GetUserName.text()) >= 2 and len(self.GetPassword.text()) >= 7:
             self.SignUpButton.setEnabled(True)
         else:
             self.SignUpButton.setEnabled(False)
@@ -97,19 +103,13 @@ class LoginApp(CommonApp, login_layout.Ui_MainWindow):
     def getTextUser(self, text) -> None:
         """Что ввёл пользователь в поле User Name?"""
         self.user_text = bool(text)
+        self.user_name = text
         self.button_enable()
 
     def getTextPassword(self, text) -> None:
         """Что ввёл пользователь в поле Password?"""
         self.password_text = bool(text)
-        self.button_enable()
-    
-    def checkBoxChecked(self, state):
-        """Что ввёл пользователь в поле CheckBox?"""
-        if state:
-            self.check_box_status = True
-        else:
-            self.check_box_status = False
+        self.password_1 = text
         self.button_enable()
 
 
@@ -147,17 +147,26 @@ class RegisterApp(CommonApp, register_layout.Ui_MainWindow):
         self.password_text_2: bool = False
         self.check_box_status: bool = False
 
+        self.user_name: str = None
         self.password_1: str = None
         self.password_2: str = None
 
         self.button_enable() # Проверка состояния полей и флажка при запуске приложения
         self.RegisterButton.setEnabled(False)
 
+        self.RegisterButton.clicked.connect(self.register)
+
+    def register(self) -> None:
+        status_list = db().selectAllLogin(nick=self.user_name)
+        if not status_list:
+            db().writeNewLogin(nick=self.user_name, password=self.password_1)
+        else:
+            pass
+
+    
     def switchToLogin(self) -> None:
         """Переключение между окнами"""
         self.switch_window.emit()
-    
-
 
     def button_enable(self) -> None:
         """Проверка на поля(выключение кнопки)"""
@@ -170,6 +179,7 @@ class RegisterApp(CommonApp, register_layout.Ui_MainWindow):
     def getTextUser(self, text) -> None:
         """Что ввёл пользователь в поле User Name?"""
         self.user_text = bool(text)
+        self.user_name = text
         self.button_enable()
 
     def getTextPassword(self, text) -> None:

@@ -47,79 +47,68 @@ class database:
         """)
         self.connection.commit()    
 
-    def selectAllLogin(self) -> list:
+    def selectAllLogin(self, nick: str) -> list:
         """Чтение всех логинов из базы данных"""
         self.cursor = self.connection.cursor()
         self.cursor.execute("""
-            SELECT login FROM users
-        """)
+            SELECT login FROM users WHERE login = %s
+        """, (nick,))
         return self.cursor.fetchall()
 
-    # def connected(self) -> bool:
-    #     connection = None
-    #     try:
-    #         # Вход в базу данных
-    #         database_name = 'clinic'
-    #         user_name = 'postgres'
-    #         host = '31.129.109.154'
-    #         password = '1*t&kvJlBCrc'
-    #         connection = psycopg2.connect(
-    #                 user=user_name,
-    #                 password=password,
-    #                 host=host,
-    #                 database=database_name
-    #         )
-
-    #         # Если мы здесь, это означает, что соединение успешно
-    #         return True
-    #     except (Exception, psycopg2.Error) as error:
-    #         # Если мы здесь, это означает, что произошла ошибка соединения
-    #         return False
-    #     finally:
-    #         # Убедитесь, что соединение закрывается, независимо от того, что произошло
-    #         if connection is not None:
-    #             connection.close()
-
-
-import queue
-import threading
-
-def attempt_connection(q, user, password, host, database):
-    try:
-        connection = psycopg2.connect(
-            user=user,
-            password=password,
-            host=host,
-            database=database
-        )
-        q.put(True)
-    except (Exception, psycopg2.Error):
-        q.put(False)
-    finally:
-        if connection is not None:
-            connection.close()
-
-def connected() -> bool:
-    database_name = 'clinic'
-    user_name = 'postgres'
-    host = '31.129.109.154'
-    password = '1*t&kvJlBCrc'
+    def writeNewLogin(self, nick: str, password: str) -> None:
+        """Запись нового пользователя в базу данных"""
+        self.cursor = self.connection.cursor()
+        self.cursor.execute("""
+            INSERT INTO users (login, password) VALUES (%s, %s)
+        """, (nick, password,))
+        self.connection.commit()
     
-    q = queue.Queue()
-    t = threading.Thread(target=attempt_connection, args=(q, user_name, password, host, database_name))
-    t.start()    
+    def selectLoginPassword(self, login: str, password: str) -> bool:
+        """Проверка на вход."""
+        self.cursor = self.connection.cursor()
+        self.cursor.execute("""
+            SELECT login, password FROM users WHERE login = %s AND password = %s
+        """, (login, password,))
+        return self.cursor.fetchall()
 
-    t.join(timeout=5)  # Wait up to 5 seconds for the thread to finish
 
-    if not q.empty():
-        return q.get()
-    else:
-        return False
+
+# import queue
+# import threading
+
+# def attempt_connection(q, user, password, host, database):
+#     try:
+#         connection = psycopg2.connect(
+#             user=user,
+#             password=password,
+#             host=host,
+#             database=database
+#         )
+#         q.put(True)
+#     except (Exception, psycopg2.Error):
+#         q.put(False)
+#     finally:
+#         if connection is not None:
+#             connection.close()
+
+# def connected() -> bool:
+#     database_name = 'clinic'
+#     user_name = 'postgres'
+#     host = '31.129.109.154'
+#     password = '1*t&kvJlBCrc'
+    
+#     q = queue.Queue()
+#     t = threading.Thread(target=attempt_connection, args=(q, user_name, password, host, database_name))
+#     t.start()    
+
+#     t.join(timeout=5)  # Wait up to 5 seconds for the thread to finish
+
+#     if not q.empty():
+#         return q.get()
+#     else:
+#         return False
 
 
 
 if __name__ == "__main__":
-    # database().createTable()
-    # print(type(database().selectAllLogin()))
-    # print(database().connected())
-    passs
+    pass

@@ -1,0 +1,24 @@
+{
+    "SignUp": {
+        "programlogo": "ClinicBook",
+        "title": "Authorization",
+        "labellogin": "Your login",
+        "placeholderlogin": "login",
+        "labelpassword": "Your password",
+        "placeholderpassword": "Password",
+        "signupbutton": "Sign up",
+        "registerbutton": "Create an account"
+    },
+    "Register": {
+        "programlogo": "ClinicBook",
+        "title": "Creating an account",
+        "labellogin": "Account login",
+        "placeholderlogin": "login",
+        "labelpassword": "Account password",
+        "placeholderpassword": "Password",
+        "labelconfirmpassword": "Confirm password",
+        "offer": "I Agree to the Terms of Service",
+        "registerbutton": "Create an account",
+        "signupbutton": "Sign up"
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "SignUp": {
+        "programlogo": "КлиникБук",
+        "title": "Авторизация",
+        "labellogin": "Ваш логин",
+        "placeholderlogin": "Логин",
+        "labelpassword": "Ваш пароль",
+        "placeholderpassword": "Пароль",
+        "signupbutton": "Войти",
+        "registerbutton": "Создать аккаунт"
+    },
+    "Register": {
+        "programlogo": "КлиникБук",
+        "title": "Создание аккаунта",
+        "labellogin": "Логин аккаунта",
+        "placeholderlogin": "Логин",
+        "labelpassword": "Придумайте пароль",
+        "placeholderpassword": "Пароль",
+        "labelconfirmpassword": "Повторите пароль",
+        "offer": "Я Согласен с Условиями Предоставления Услуг",
+        "registerbutton": "Создать аккаунт",
+        "signupbutton": "Войти"
+    }
+}

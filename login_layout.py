@@ -150,19 +150,9 @@ class Ui_MainWindow(object):
         self.GetUserName.setCursorMoveStyle(QtCore.Qt.LogicalMoveStyle)
         self.GetUserName.setClearButtonEnabled(False)
         self.GetUserName.setObjectName("GetUserName")
-        self.AgreeCond = QtWidgets.QCheckBox(self.frame)
-        self.AgreeCond.setGeometry(QtCore.QRect(10, 240, 271, 20))
-        self.AgreeCond.setStyleSheet("QCheckBox {\n"
-"    background-color: 0;\n"
-"    color: #ca3767;\n"
-"    border: 0;\n"
-"    font: 700 7pt \"Montserrat Medium\";    \n"
-"}\n"
-"")
-        self.AgreeCond.setObjectName("AgreeCond")
         self.SignUpButton = QtWidgets.QPushButton(self.frame)
         self.SignUpButton.setEnabled(False)
-        self.SignUpButton.setGeometry(QtCore.QRect(10, 270, 251, 24))
+        self.SignUpButton.setGeometry(QtCore.QRect(10, 240, 251, 24))
         self.SignUpButton.setStyleSheet("QPushButton {\n"
 "    background-color: #ca3767;\n"
 "    color: white;\n"
@@ -182,7 +172,7 @@ class Ui_MainWindow(object):
 "")
         self.SignUpButton.setObjectName("SignUpButton")
         self.RegisterButton = QtWidgets.QPushButton(self.frame)
-        self.RegisterButton.setGeometry(QtCore.QRect(10, 310, 251, 24))
+        self.RegisterButton.setGeometry(QtCore.QRect(10, 280, 251, 24))
         self.RegisterButton.setStyleSheet("QPushButton {\n"
 "    background-color: #ca3767;\n"
 "    color: white;\n"
@@ -202,7 +192,6 @@ class Ui_MainWindow(object):
         self.line_2.raise_()
         self.GetPassword.raise_()
         self.GetUserName.raise_()
-        self.AgreeCond.raise_()
         self.SignUpButton.raise_()
         self.RegisterButton.raise_()
         self.frame_2 = QtWidgets.QFrame(self.MainBackground)
@@ -269,7 +258,6 @@ class Ui_MainWindow(object):
         self.Password.setText(_translate("MainWindow", "Password:"))
         self.GetPassword.setPlaceholderText(_translate("MainWindow", "Password"))
         self.GetUserName.setPlaceholderText(_translate("MainWindow", "User name"))
-        self.AgreeCond.setText(_translate("MainWindow", "I Agree Terms Of Service And Conditions"))
         self.SignUpButton.setText(_translate("MainWindow", "Sign Up"))
         self.RegisterButton.setText(_translate("MainWindow", "Register"))
         self.ClinicBook.setText(_translate("MainWindow", "КлиникБук"))

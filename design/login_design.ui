@@ -340,28 +340,6 @@
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QCheckBox" name="AgreeCond">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>240</y>
-        <width>271</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QCheckBox {
-	background-color: 0;
-	color: #ca3767;
-	border: 0;
-	font: 700 7pt &quot;Montserrat Medium&quot;;	
-}
-</string>
-      </property>
-      <property name="text">
-       <string>I Agree Terms Of Service And Conditions</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="SignUpButton">
       <property name="enabled">
        <bool>false</bool>
@@ -369,7 +347,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>270</y>
+        <y>240</y>
         <width>251</width>
         <height>24</height>
        </rect>
@@ -401,7 +379,7 @@ QPushButton[disabled]{
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>310</y>
+        <y>280</y>
         <width>251</width>
         <height>24</height>
        </rect>
@@ -430,7 +408,6 @@ QPushButton:hover {
      <zorder>line_2</zorder>
      <zorder>GetPassword</zorder>
      <zorder>GetUserName</zorder>
-     <zorder>AgreeCond</zorder>
      <zorder>SignUpButton</zorder>
      <zorder>RegisterButton</zorder>
     </widget>
