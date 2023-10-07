@@ -161,6 +161,7 @@ class Ui_MainWindow(object):
         self.DateEditUser.setReadOnly(False)
         self.DateEditUser.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
         self.DateEditUser.setMaximumDate(QtCore.QDate(3000, 12, 31))
+        self.DateEditUser.setDate(QtCore.QDate(1799, 9, 14))
         self.DateEditUser.setMinimumDate(QtCore.QDate(1799, 9, 14))
         self.DateEditUser.setObjectName("DateEditUser")
         self.SignUpClinicButton = QtWidgets.QPushButton(self.MainFrame)

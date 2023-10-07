@@ -392,9 +392,75 @@ class MainLayoutApp(CommonApp, main_layout.Ui_MainWindow):
         """Подключение кнопок"""
         self.SettingButton.clicked.connect(self.switch_on_setting)
 
+        self.GetUserFullName.textChanged.connect(self.validateUserFullName)
+        self.DateEditUser.dateChanged.connect(self.validateUserDate)
+        self.SignUpClinicButton.setEnabled(False)
+        self.SignUpClinicButton.clicked.connect(self.send)
+        self.DateEditUser.setDate(QtCore.QDate(1799, 9, 14))
+
+        self.fullName: list = None
+        self.date: str = None
+
     def switch_on_setting(self) -> None:
         """Вход в настройки"""
         self.switch_window.emit()
+    
+    def send(self) -> None:
+        value = self.DateEditUser.date()
+        self.date = f"{value.day()}-{value.month()}-{value.year()}"
+        login = ldb().select_my_login()[0]
+        db().regSend(
+            login=login,
+            surname=self.fullName[0],
+            middlename=self.fullName[1],
+            fullname=self.fullName[2],
+            date=self.date
+        )
+        msg_box = QMessageBox()
+        msg_box.setStyleSheet("""
+            QMessageBox {
+                background-color: #fff;
+                color: black;
+            }
+            QMessageBox QLabel {
+                color: black;
+            }
+            QMessageBox QPushButton {
+                background-color: green;
+                color: white;
+                padding: 6px;
+                border-radius: 4px;
+            }
+        """)
+        msg_box.setWindowTitle(self.translations[self.current_language]['System']['titilesuccessfully'])
+        msg_box.setText(self.translations[self.current_language]['System']['textsuccessfully'])
+        msg_box.exec_()
+
+
+    def validateUserFullName(self, value: str) -> None:
+        """Проверяет поле на возможность активации кнопки"""
+        split_value = value.split()
+        if len(split_value) < 3:
+            self.SignUpClinicButton.setEnabled(False)
+        else:
+            self.checkButtonActivation()
+            self.fullName = split_value
+
+    def validateUserDate(self, value: QtCore.QDate) -> None:
+        """Проверяет дату на возможность активации кнопки"""
+        if value.year() < 1950:
+            self.SignUpClinicButton.setEnabled(False)
+        else:
+            self.checkButtonActivation()
+
+    def checkButtonActivation(self) -> None:
+        """Активирует кнопку, если выполнены оба условия"""
+        split_name = self.GetUserFullName.text().split()
+        year = self.DateEditUser.date().year()
+        if len(split_name) >= 3 and year >= 1950:
+            self.SignUpClinicButton.setEnabled(True)
+        else:
+            self.SignUpClinicButton.setEnabled(False)
 
 
 class SettingLayoutApp(CommonApp, setting_layout.Ui_MainWindow):

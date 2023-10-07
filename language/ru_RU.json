@@ -28,7 +28,9 @@
         "placeholderpassword": "Пароль",
         "titleerror": "Ошибка!",
         "texterror1": "Вы ввели логин или пароль неправильно.",
-        "texterror2": "Такой никнейм уже существует."
+        "texterror2": "Такой никнейм уже существует.",
+        "titilesuccessfully": "Успешно",
+        "textsuccessfully": "Ваша заявка оставлена!"
     },
     "Setting": {
         "Panel1": "Главная",

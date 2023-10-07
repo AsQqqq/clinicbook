@@ -30,7 +30,9 @@
         "placeholderpassword": "Password",
         "titleerror": "Error!",
         "texterror1": "You entered your username or password incorrectly.",
-        "texterror2": "Such a nickname already exists."
+        "texterror2": "Such a nickname already exists.",
+        "titilesuccessfully": "Successfully",
+        "textsuccessfully": "Your application has been left!"
     },
     "Setting": {
         "Panel1": "Main",

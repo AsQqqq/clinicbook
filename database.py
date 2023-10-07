@@ -33,7 +33,7 @@ class database:
                 surname TEXT,
                 middlename TEXT,
                 fullname TEXT,
-                date DATE
+                date TEXT
             )
         """)
         self.connection.commit()
@@ -72,6 +72,15 @@ class database:
         """, (login, password,))
         return self.cursor.fetchall()
 
+    def regSend(self, login: str, surname: str, middlename: str, fullname: str, date: str):
+        """Запись заявки в базу данных"""
+        self.cursor = self.connection.cursor()
+        self.cursor.execute("""
+            INSERT INTO recording (login, surname, middlename, fullname, date) VALUES (%s, %s, %s, %s, %s)
+        """, (login, surname, middlename, fullname, date,))
+        self.connection.commit()
+
+
 class LocalDatabase:
     def __init__(self):
         self.connection = sqlite3.connect("local.sqlite")
@@ -89,6 +98,11 @@ class LocalDatabase:
         if not result:
             return False
         return True
+
+    def select_my_login(self) -> str:
+        self.cursor.execute('''SELECT login FROM joins''')
+        result = self.cursor.fetchone()
+        return result
 
     def joins(self, login: str, password: str) -> None:
         self.cursor.execute('''INSERT INTO joins(login, password) VALUES (?, ?)''', 
