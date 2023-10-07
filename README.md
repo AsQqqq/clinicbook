@@ -14,34 +14,26 @@
 * [Навигация](#навигация)
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+# Установка
+
+Перед установкой вам нужно скачать программу по [ссылке](https://jrsoftware.org/isinfo.php)
+
+# Компиляция в exe
+
+Создаём виртаульное окружение командой:
+
+* windows
+    * `python -m venv .venv`
+* linux
+    * `python3 -m venv .venv`
+
+Далее заходим в него
+
+* windows
+    * `python .venv\Script\activate`
+* linux
+    * `python3 .venv/bin/avtivate`
+
+Устанавливаем все зависимости:
 
 
----
-<h3>Из UI в PY:</h3>
-
-    pyuic5.exe -x [name].ui -o [name].py
----
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
----
-<h3>Из QRC в PY:</h3>
-
-    pyrcc5.exe [name].ui -o [name].py
----
