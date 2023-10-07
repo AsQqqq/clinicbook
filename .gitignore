@@ -372,7 +372,7 @@ venv.bak/
 .ropeproject
 
 # mkdocs documentation
-/site
+# /site
 
 # mypy
 .mypy_cache/
@@ -856,5 +856,7 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-home-store.py
-flet-trello-clone-main/
+info
+local.sqlite
+
+

@@ -1,0 +1,45 @@
+{
+    "SignUp": {
+        "title": "Log in",
+        "labellogin": "Your login:",
+        "labelpassword": "Your password:",
+        "signupbutton": "Sign up",
+        "registerbutton": "Create an account"
+    },
+    "Register": {
+        "title": "Creating an account",
+        "labellogin": "Account login:",
+        "labelpassword": "Account password:",
+        "labelconfirmpassword": "Confirm password:",
+        "offer": "I agree to the terms",
+        "registerbutton": "Create an account",
+        "signupbutton": "Sign up"
+    },
+    "Main": {
+        "Panel1": "Main",
+        "Panel2": "Settings",
+        "title": "Make an appointment",
+        "labelfullname": "Last name, First name, Patronymic:",
+        "placeholfullname": "FCs",
+        "labeldateuser": "Date of birth:",
+        "sendbutton": "Send"
+    },
+    "System": {
+        "programlogo": "ClinicBook",
+        "placeholderlogin": "login",
+        "placeholderpassword": "Password",
+        "titleerror": "Error!",
+        "texterror1": "You entered your username or password incorrectly.",
+        "texterror2": "Such a nickname already exists.",
+        "titilesuccessfully": "Successfully",
+        "textsuccessfully": "Your application has been left!"
+    },
+    "Setting": {
+        "Panel1": "Main",
+        "Panel2": "Settings",
+        "title": "Setting",
+        "labelfnumber": "Hotline:",
+        "labelexit": "Log out of the system",
+        "exit": "Exit"
+    }
+}
