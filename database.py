@@ -76,12 +76,34 @@ class LocalDatabase:
     def __init__(self):
         self.connection = sqlite3.connect("local.sqlite")
         self.cursor = self.connection.cursor()
+        self.create_table()
     
     def create_table(self):
         # Создаем таблицу, если она не существует
-        database().selectAllLogin()
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS joins (login TEXT, password TEXT)''')
         self.connection.commit()
+    
+    def select_join(self) -> bool:
+        self.cursor.execute('''SELECT login FROM joins''')
+        result = self.cursor.fetchone()
+        if not result:
+            return False
+        return True
+
+    def joins(self, login: str, password: str) -> None:
+        self.cursor.execute('''INSERT INTO joins(login, password) VALUES (?, ?)''', 
+                            (login, password,))
+        self.connection.commit()
+    
+    def exits(self) -> None:
+        self.cursor.execute('''DELETE FROM joins''')
+        self.connection.commit()
+        result = self.cursor.fetchone()
+        if not result:
+            return True
+        return False
+
+        
 
 
 if __name__ == "__main__":

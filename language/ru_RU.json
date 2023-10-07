@@ -1,22 +1,41 @@
 {
     "SignUp": {
-        "programlogo": "КлиникБук",
         "title": "Авторизация",
-        "labellogin": "Ваш логин",
-        "placeholderlogin": "Логин",
-        "labelpassword": "Ваш пароль",
-        "placeholderpassword": "Пароль",
+        "labellogin": "Ваш логин:",
+        "labelpassword": "Ваш пароль:",
         "registerbutton": "Создать аккаунт",
         "signupbutton": "Войти"
     },
     "Register": {
-        "programlogo": "КлиникБук",
         "title": "Создание аккаунта",
-        "labellogin": "Логин аккаунта",
-        "placeholderlogin": "Логин",
-        "labelpassword": "Придумайте пароль",
-        "placeholderpassword": "Пароль",
-        "labelconfirmpassword": "Повторите пароль",
+        "labellogin": "Логин аккаунта:",
+        "labelpassword": "Придумайте пароль:",
+        "labelconfirmpassword": "Повторите пароль:",
         "offer": "Я Согласен с условиями"
+    },
+    "Main": {
+        "Panel1": "Главная",
+        "Panel2": "Настройки",
+        "title": "Запись на приём",
+        "labelfullname": "Фамилия, Имя, Отчество:",
+        "placeholfullname": "ФИО",
+        "labeldateuser": "Дата рождения:",
+        "sendbutton": "Записаться"
+    },
+    "System": {
+        "programlogo": "КлиникБук",
+        "placeholderlogin": "Логин",
+        "placeholderpassword": "Пароль",
+        "titleerror": "Ошибка!",
+        "texterror1": "Вы ввели логин или пароль неправильно.",
+        "texterror2": "Такой никнейм уже существует."
+    },
+    "Setting": {
+        "Panel1": "Главная",
+        "Panel2": "Настройки",
+        "title": "Настройки",
+        "labelfnumber": "Горячая линия:",
+        "labelexit": "Выход из системы",
+        "exit": "Выйти"
     }
 }
