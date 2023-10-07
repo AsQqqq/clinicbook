@@ -59,7 +59,7 @@
 
 Создайте папку path на рабочем столе и скиньте туда папку `language` и файл `local.sqlite`, а так же не забудьте про скомпилированный файл. 
 
-Далее просто скачайте этот файл по [ссылке](#) и выполните компиляцию.
+Далее просто скачайте этот файл по [ссылке](https://github.com/AsQqqq/clinicbook/blob/master/scriptInstaller.iss) и выполните компиляцию.
 
 [![Header](https://github.com/AsQqqq/clinicbook/blob/master/assets/image/screen.png?raw=true)](#клиникбук)
 
