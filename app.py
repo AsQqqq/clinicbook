@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QMessageBox
 from PyQt5.QtCore import Qt, QPoint, pyqtSignal
 
 from database import database as db
@@ -8,7 +8,7 @@ from database import database as db
 import login_layout
 import register_layout
 
-agent_url = 'https://127.0.0.1:12300'
+agent_url = 'http://192.168.0.104:3040/assets'
 
 import json
 
@@ -179,6 +179,26 @@ class LoginApp(CommonApp, login_layout.Ui_MainWindow):
         status = db().selectLoginPassword(login=self.user_name, password=self.password_1)
         if status:
             pass
+        else:
+            msg_box = QMessageBox()
+            msg_box.setStyleSheet("""
+                QMessageBox {
+                    background-color: #fff;
+                    color: black;
+                }
+                QMessageBox QLabel {
+                    color: black;
+                }
+                QMessageBox QPushButton {
+                    background-color: red;
+                    color: white;
+                    padding: 6px;
+                    border-radius: 4px;
+                }
+            """)
+            msg_box.setWindowTitle("Ошибка!")
+            msg_box.setText("Неверно введён логин или пароль")
+            msg_box.exec_()
     
     def switchToRegister(self) -> None:
         """Переключение между окнами"""
@@ -255,8 +275,27 @@ class RegisterApp(CommonApp, register_layout.Ui_MainWindow):
         status_list = db().selectAllLogin(nick=self.user_name)
         if not status_list:
             db().writeNewLogin(nick=self.user_name, password=self.password_1)
+            self.switch_window.emit()
         else:
-            pass
+            msg_box = QMessageBox()
+            msg_box.setStyleSheet("""
+                QMessageBox {
+                    background-color: #fff;
+                    color: black;
+                }
+                QMessageBox QLabel {
+                    color: black;
+                }
+                QMessageBox QPushButton {
+                    background-color: red;
+                    color: white;
+                    padding: 6px;
+                    border-radius: 4px;
+                }
+            """)
+            msg_box.setWindowTitle("Ошибка!")
+            msg_box.setText("Такой никнейм уже существует.")
+            msg_box.exec_()
 
     
     def switchToLogin(self) -> None:

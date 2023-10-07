@@ -1,5 +1,6 @@
 import psycopg2
 from psycopg2 import Error
+import sqlite3
 
 
 class database:
@@ -71,43 +72,16 @@ class database:
         """, (login, password,))
         return self.cursor.fetchall()
 
-
-
-# import queue
-# import threading
-
-# def attempt_connection(q, user, password, host, database):
-#     try:
-#         connection = psycopg2.connect(
-#             user=user,
-#             password=password,
-#             host=host,
-#             database=database
-#         )
-#         q.put(True)
-#     except (Exception, psycopg2.Error):
-#         q.put(False)
-#     finally:
-#         if connection is not None:
-#             connection.close()
-
-# def connected() -> bool:
-#     database_name = 'clinic'
-#     user_name = 'postgres'
-#     host = '31.129.109.154'
-#     password = '1*t&kvJlBCrc'
+class LocalDatabase:
+    def __init__(self):
+        self.connection = sqlite3.connect("local.sqlite")
+        self.cursor = self.connection.cursor()
     
-#     q = queue.Queue()
-#     t = threading.Thread(target=attempt_connection, args=(q, user_name, password, host, database_name))
-#     t.start()    
-
-#     t.join(timeout=5)  # Wait up to 5 seconds for the thread to finish
-
-#     if not q.empty():
-#         return q.get()
-#     else:
-#         return False
-
+    def create_table(self):
+        # Создаем таблицу, если она не существует
+        database().selectAllLogin()
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS joins (login TEXT, password TEXT)''')
+        self.connection.commit()
 
 
 if __name__ == "__main__":

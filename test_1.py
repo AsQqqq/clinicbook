@@ -1,44 +1,36 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox, QLabel, QVBoxLayout, QWidget
-from PyQt5.QtCore import Qt, QTranslator
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Language Switcher")
-        self.layout = QVBoxLayout()
-        
-        self.label = QLabel()
-        self.layout.addWidget(self.label)
-        
-        self.combo_box = QComboBox()
-        self.combo_box.addItems(["English", "Русский"])
-        self.combo_box.currentIndexChanged.connect(self.switch_language)
-        self.layout.addWidget(self.combo_box)
-        
-        self.central_widget = QWidget()
-        self.central_widget.setLayout(self.layout)
-        self.setCentralWidget(self.central_widget)
+def show_notification():
+    msg_box = QMessageBox()
+    msg_box.setStyleSheet("""
+        QMessageBox {
+            background-color: #fff;
+            color: black;
+        }
+        QMessageBox QLabel {
+            color: black;
+        }
+        QMessageBox QPushButton {
+            background-color: red;
+            color: white;
+            padding: 6px;
+            border-radius: 4px;
+        }
+    """)
+    msg_box.setWindowTitle("Ошибка!")
+    msg_box.setText("Такой никнейм уже существует.")
+    msg_box.exec_()
 
-        self.translator = QTranslator(self)
-        self.translator.load("translations.json")
-        QApplication.instance().installTranslator(self.translator)
-
-        self.retranslate_ui()
-
-    def switch_language(self, index):
-        if index == 0:
-            self.translator.load("translations.json")
-        elif index == 1:
-            self.translator.load("translations.json", "ru")
-        QApplication.instance().installTranslator(self.translator)
-        self.retranslate_ui()
-        
-    def retranslate_ui(self):
-        self.label.setText(self.tr("hello"))
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainWindow()
+
+    window = QWidget()
+    window.setWindowTitle("Пример с кнопкой и уведомлением")
+    button = QPushButton("Нажми меня", window)
+    button.clicked.connect(show_notification)
+    
+    window.resize(250, 150)
     window.show()
+
     sys.exit(app.exec_())
