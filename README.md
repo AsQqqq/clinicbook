@@ -57,7 +57,7 @@
 
 Программа будет запускаться, только если в её корне находится папка `language` и файл `local.sqlite`. Чтобы создать загрузчик, потребуется программа, которую я просил скачать [ранее](#установка).
 
-Скачайте файл по этой [ссылке](#) и выполните компиляцию.
+Скачайте файл по этой [ссылке](https://github.com/AsQqqq/clinicbook/blob/master/scriptInstaller.iss) и выполните компиляцию.
 
 [![Header](https://github.com/AsQqqq/clinicbook/blob/master/assets/image/screen.png?raw=true)](#клиникбук)
 
