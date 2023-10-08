@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\setting-layout.ui'
+# Form implementation generated from reading ui file '.\mysend-layout.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -76,55 +76,15 @@ class Ui_MainWindow(object):
         self.MainFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.MainFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.MainFrame.setObjectName("MainFrame")
-        self.GetNunbmer = QtWidgets.QLabel(self.MainFrame)
-        self.GetNunbmer.setGeometry(QtCore.QRect(24, 67, 171, 21))
-        self.GetNunbmer.setStyleSheet("QFrame {\n"
-"    background-color: 0;\n"
-"    color: #ca3767;\n"
-"    font: 500 9pt \"Montserrat Medium\";    \n"
-"}\n"
-"")
-        self.GetNunbmer.setObjectName("GetNunbmer")
-        self.Setting = QtWidgets.QLabel(self.MainFrame)
-        self.Setting.setGeometry(QtCore.QRect(23, 17, 191, 31))
-        self.Setting.setStyleSheet("QFrame {\n"
+        self.title = QtWidgets.QLabel(self.MainFrame)
+        self.title.setGeometry(QtCore.QRect(23, 17, 191, 31))
+        self.title.setStyleSheet("QFrame {\n"
 "    background-color: 0;\n"
 "    color: #ca3767;\n"
 "    font: 500 16pt \"Montserrat Medium\";    \n"
 "}\n"
 "")
-        self.Setting.setObjectName("Setting")
-        self.DateUser = QtWidgets.QLabel(self.MainFrame)
-        self.DateUser.setGeometry(QtCore.QRect(24, 137, 171, 21))
-        self.DateUser.setStyleSheet("QFrame {\n"
-"    background-color: 0;\n"
-"    color: #ca3767;\n"
-"    font: 500 9pt \"Montserrat Medium\";    \n"
-"}\n"
-"")
-        self.DateUser.setObjectName("DateUser")
-        self.ThemeChange = QtWidgets.QPushButton(self.MainFrame)
-        self.ThemeChange.setGeometry(QtCore.QRect(20, 170, 131, 31))
-        self.ThemeChange.setStyleSheet("QPushButton {\n"
-"    background-color: red;\n"
-"    color: white;\n"
-"    border: 0;\n"
-"    font: 500 10pt \"Montserrat Medium\";    \n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #CA378A;\n"
-"}")
-        self.ThemeChange.setObjectName("ThemeChange")
-        self.Number = QtWidgets.QLabel(self.MainFrame)
-        self.Number.setGeometry(QtCore.QRect(30, 90, 141, 16))
-        self.Number.setStyleSheet("QFrame {\n"
-"    background-color: 0;\n"
-"    color: red;\n"
-"    font: 500 9pt \"Montserrat Medium\";    \n"
-"}\n"
-"")
-        self.Number.setObjectName("Number")
+        self.title.setObjectName("title")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.MainFrame)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(340, 0, 51, 31))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
@@ -159,6 +119,36 @@ class Ui_MainWindow(object):
 "}")
         self.rubutton.setObjectName("rubutton")
         self.horizontalLayout.addWidget(self.rubutton)
+        self.tabWidget = QtWidgets.QTabWidget(self.MainFrame)
+        self.tabWidget.setGeometry(QtCore.QRect(19, 51, 371, 391))
+        self.tabWidget.setStyleSheet("* {\n"
+"    background-color: white;\n"
+"    border: 0;\n"
+"    margin: 0;\n"
+"    color: black;\n"
+"    width: 170px;\n"
+"    height: 30px;\n"
+"    font: 7pt \"Montserrat\";\n"
+"}\n"
+"\n"
+"*::tab {\n"
+"    color: white;\n"
+"    background-color: rgb(202, 55, 103);\n"
+"    width: 170px;\n"
+"    height: 30px;\n"
+"}\n"
+"\n"
+"*::tab:selected {\n"
+"    background-color: rgb(249, 67, 128);\n"
+"    border: 1px solid black;\n"
+"    width: 170px;\n"
+"    height: 30px;\n"
+"}\n"
+"\n"
+"*::tab:hover {\n"
+"    background-color: rgb(202, 55, 138);\n"
+"}")
+        self.tabWidget.setObjectName("tabWidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.MainBackground)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 30, 151, 361))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -189,6 +179,18 @@ class Ui_MainWindow(object):
         self.verticalLayout.addItem(spacerItem1)
         self.MySend = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.MySend.setStyleSheet("QPushButton {\n"
+"    color: black;\n"
+"    background-color: white;\n"
+"    height: 40;\n"
+"    border: 0;\n"
+"}\n"
+"")
+        self.MySend.setObjectName("MySend")
+        self.verticalLayout.addWidget(self.MySend)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem2)
+        self.SettingButton = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.SettingButton.setStyleSheet("QPushButton {\n"
 "    color: white;\n"
 "    border: 0;\n"
 "    height: 40;\n"
@@ -200,18 +202,6 @@ class Ui_MainWindow(object):
 "    border: 2px solid white;\n"
 "}\n"
 "\n"
-"")
-        self.MySend.setObjectName("MySend")
-        self.verticalLayout.addWidget(self.MySend)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout.addItem(spacerItem2)
-        self.SettingButton = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        self.SettingButton.setStyleSheet("QPushButton {\n"
-"    color: black;\n"
-"    background-color: white;\n"
-"    height: 40;\n"
-"    border: 0;\n"
-"}\n"
 "")
         self.SettingButton.setObjectName("SettingButton")
         self.verticalLayout.addWidget(self.SettingButton)
@@ -259,11 +249,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Form"))
         self.TextLogoType.setText(_translate("MainWindow", "КлиникБук"))
-        self.GetNunbmer.setText(_translate("MainWindow", "Горячая линия"))
-        self.Setting.setText(_translate("MainWindow", "Настройки"))
-        self.DateUser.setText(_translate("MainWindow", "Выход из системы"))
-        self.ThemeChange.setText(_translate("MainWindow", "Выйти"))
-        self.Number.setText(_translate("MainWindow", "8 - (800) - 555 - 35 - 35"))
+        self.title.setText(_translate("MainWindow", "Мои записи"))
         self.rubutton_2.setText(_translate("MainWindow", "EN"))
         self.rubutton.setText(_translate("MainWindow", "RU"))
         self.HomeButton.setText(_translate("MainWindow", "Главная"))

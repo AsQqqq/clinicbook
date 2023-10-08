@@ -16,11 +16,9 @@
         "signupbutton": "Sign up"
     },
     "Main": {
-        "Panel1": "Main",
-        "Panel2": "Settings",
         "title": "Make an appointment",
         "labelfullname": "Last name, First name, Patronymic:",
-        "placeholfullname": "FCs",
+        "placeholfullname": "John Smith Jr.",
         "labeldateuser": "Date of birth:",
         "sendbutton": "Send"
     },
@@ -32,14 +30,18 @@
         "texterror1": "You entered your username or password incorrectly.",
         "texterror2": "Such a nickname already exists.",
         "titilesuccessfully": "Successfully",
-        "textsuccessfully": "Your application has been left!"
-    },
-    "Setting": {
+        "textsuccessfully": "Your application has been left!",
         "Panel1": "Main",
         "Panel2": "Settings",
+        "Panel3": "My applications"
+    },
+    "Setting": {
         "title": "Setting",
         "labelfnumber": "Hotline:",
         "labelexit": "Log out of the system",
         "exit": "Exit"
+    },
+    "MySend": {
+        "title": "Applications"
     }
 }

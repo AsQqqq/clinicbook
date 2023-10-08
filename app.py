@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QWidget, QMessageBox
 from PyQt5.QtCore import Qt, QPoint, pyqtSignal
+from PyQt5.QtWidgets import QHBoxLayout, QLabel, QPushButton, QWidget, QVBoxLayout, QListWidget, QListWidgetItem
 
 from database import database as db
 from database import LocalDatabase as ldb
@@ -10,6 +11,7 @@ import login_layout
 import register_layout
 import main_layout
 import setting_layout
+import mysend_layout
 
 agent_url = 'http://31.129.111.98/assets'
 
@@ -90,8 +92,9 @@ class CommonApp(QWidget):
             self.SignUpButton.setText(translations["SignUp"]["signupbutton"])
         elif isinstance(self, MainLayoutApp):
             #Перевод для MainLayoutApp
-            self.HomeButton.setText(translations["Main"]["Panel1"])
-            self.SettingButton.setText(translations["Main"]["Panel2"])
+            self.HomeButton.setText(translations["System"]["Panel1"])
+            self.SettingButton.setText(translations["System"]["Panel2"])
+            self.MySend.setText(translations["System"]["Panel3"])
             self.TextLogoType.setText(translations["System"]["programlogo"])
             self.SIGNUP.setText(translations["Main"]["title"])
             self.UserFullName.setText(translations["Main"]["labelfullname"])
@@ -100,14 +103,22 @@ class CommonApp(QWidget):
             self.SignUpClinicButton.setText(translations["Main"]["sendbutton"])
         elif isinstance(self, SettingLayoutApp):
             #Перевод для SettingLayoutApp
-            self.HomeButton.setText(translations["Setting"]["Panel1"])
-            self.SettingButton.setText(translations["Setting"]["Panel2"])
+            self.HomeButton.setText(translations["System"]["Panel1"])
+            self.SettingButton.setText(translations["System"]["Panel2"])
+            self.MySend.setText(translations["System"]["Panel3"])
             self.TextLogoType.setText(translations["System"]["programlogo"])
             self.Setting.setText(translations["Setting"]["title"])
 
             self.GetNunbmer.setText(translations["Setting"]["labelfnumber"])
             self.DateUser.setText(translations["Setting"]["labelexit"])
             self.ThemeChange.setText(translations["Setting"]["exit"])
+        elif isinstance(self, MySendLayoutApp):
+            #Перевод для SettingLayoutApp
+            self.HomeButton.setText(translations["System"]["Panel1"])
+            self.SettingButton.setText(translations["System"]["Panel2"])
+            self.MySend.setText(translations["System"]["Panel3"])
+            self.TextLogoType.setText(translations["System"]["programlogo"])
+            self.title.setText(translations["MySend"]["title"])
 
     def en_US(self) -> None:
         self.change_language.emit('en_US')
@@ -362,10 +373,13 @@ class RegisterApp(CommonApp, register_layout.Ui_MainWindow):
             self.check_box_status = False
         self.button_enable()
 
-
+from datetime import datetime, timedelta
+import requests as req
 
 class MainLayoutApp(CommonApp, main_layout.Ui_MainWindow):
     switch_window = pyqtSignal()
+    switch_window_to_mysend_1 = pyqtSignal()
+    request_added = pyqtSignal()
 
     """Окно register_layout"""
     def __init__(self, parent=None) -> None:
@@ -391,30 +405,90 @@ class MainLayoutApp(CommonApp, main_layout.Ui_MainWindow):
     def connected(self) -> None:
         """Подключение кнопок"""
         self.SettingButton.clicked.connect(self.switch_on_setting)
+        self.MySend.clicked.connect(self.switchToMysend)
 
         self.GetUserFullName.textChanged.connect(self.validateUserFullName)
         self.DateEditUser.dateChanged.connect(self.validateUserDate)
         self.SignUpClinicButton.setEnabled(False)
         self.SignUpClinicButton.clicked.connect(self.send)
-        self.DateEditUser.setDate(QtCore.QDate(1799, 9, 14))
+        self.DateEditUser.setMinimumDate(QtCore.QDate(1950, 9, 14))
+        self.DateEditUser.setDate(QtCore.QDate(1950, 9, 14))
+
+        self.DateEditUser_2.setDate(QtCore.QDate.currentDate())
+        self.DateEditUser_2.setMinimumDate(QtCore.QDate.currentDate())     
+        current_time = QtCore.QTime.currentTime()
+        if current_time.hour() >= 21:
+            next_day = QtCore.QDate.currentDate().addDays(1)
+            self.DateEditUser_2.setDate(next_day) 
+            self.DateEditUser_2.setMinimumDate(next_day)
+        self.timeEdit.setMinimumTime(QtCore.QTime(8, 0))
+        self.timeEdit.setMaximumTime(QtCore.QTime(21, 0))
+
+        self.DateEditUser_2.dateChanged.connect(self.validateUserDateSend)
 
         self.fullName: list = None
-        self.date: str = None
+        self.Date_of_birth: str = None
+        self.Date_of_recording: str = None
+
+        self.SignUpClinicButton.setEnabled(False)
+        self.get_current_date_time()
+
+
+    def get_current_date_time(self):
+        response = req.get('http://worldtimeapi.org/api/timezone/europe/moscow')
+        data = response.json()
+        current_datetime = datetime.strptime(data['datetime'], "%Y-%m-%dT%H:%M:%S.%f%z")
+        year = current_datetime.year
+        month = current_datetime.month
+        day = current_datetime.day
+        hour = current_datetime.hour
+        minute = current_datetime.minute
+        second = current_datetime.second
+        microsecond = current_datetime.microsecond
+        return [year, month, day, hour, minute, second, microsecond]
+
+    def validateUserDateSend(self, value: QtCore.QDate) -> None:
+        """Проверяет дату на возможность активации кнопки"""
+        curret_datetime = self.get_current_date_time()
+        if value.year() >= int(curret_datetime[0]) and value.month() >= int(curret_datetime[1]) and \
+              value.day() >= int(curret_datetime[2]) and value.year() <= int(curret_datetime[0])+1:
+            self.SignUpClinicButton.setEnabled(True)
+        else:
+            self.SignUpClinicButton.setEnabled(False)
 
     def switch_on_setting(self) -> None:
         """Вход в настройки"""
         self.switch_window.emit()
     
+    def switchToMysend(self) -> None:
+        """Переключение между окнами"""
+        self.switch_window_to_mysend_1.emit()
+    
     def send(self) -> None:
-        value = self.DateEditUser.date()
-        self.date = f"{value.day()}-{value.month()}-{value.year()}"
+        value_birth: QtCore.QDate = self.DateEditUser.date()
+        value_recording: QtCore.QDate = self.DateEditUser_2.date()
+        time_recording: QtCore.QTime = self.timeEdit.time()
+
+        self.Date_of_birth = f"{value_birth.day()}-{value_birth.month()}-{value_birth.year()}"
+        self.Date_of_recording = f"{value_recording.day()}-{value_recording.month()}-{value_recording.year()}"
+        self.Time_of_recording = f"{time_recording.hour()}-{time_recording.minute()}-{time_recording.second()}"
+
+
+
+        print(self.fullName)
+        print(self.Date_of_birth)
+        print(self.Date_of_recording)
+        print(self.Time_of_recording)
+
         login = ldb().select_my_login()[0]
         db().regSend(
             login=login,
             surname=self.fullName[0],
             middlename=self.fullName[1],
             fullname=self.fullName[2],
-            date=self.date
+            time_recording=self.Time_of_recording,
+            date_recording=self.Date_of_recording,
+            date_birth=self.Date_of_birth
         )
         msg_box = QMessageBox()
         msg_box.setStyleSheet("""
@@ -435,6 +509,7 @@ class MainLayoutApp(CommonApp, main_layout.Ui_MainWindow):
         msg_box.setWindowTitle(self.translations[self.current_language]['System']['titilesuccessfully'])
         msg_box.setText(self.translations[self.current_language]['System']['textsuccessfully'])
         msg_box.exec_()
+        self.request_added.emit()
 
 
     def validateUserFullName(self, value: str) -> None:
@@ -443,21 +518,13 @@ class MainLayoutApp(CommonApp, main_layout.Ui_MainWindow):
         if len(split_value) < 3:
             self.SignUpClinicButton.setEnabled(False)
         else:
-            self.checkButtonActivation()
+            self.SignUpClinicButton.setEnabled(True)
             self.fullName = split_value
 
     def validateUserDate(self, value: QtCore.QDate) -> None:
         """Проверяет дату на возможность активации кнопки"""
-        if value.year() < 1950:
-            self.SignUpClinicButton.setEnabled(False)
-        else:
-            self.checkButtonActivation()
-
-    def checkButtonActivation(self) -> None:
-        """Активирует кнопку, если выполнены оба условия"""
-        split_name = self.GetUserFullName.text().split()
-        year = self.DateEditUser.date().year()
-        if len(split_name) >= 3 and year >= 1950:
+        curret_datetime = self.get_current_date_time()
+        if value.year() <= int(curret_datetime[0])-6:
             self.SignUpClinicButton.setEnabled(True)
         else:
             self.SignUpClinicButton.setEnabled(False)
@@ -466,6 +533,7 @@ class MainLayoutApp(CommonApp, main_layout.Ui_MainWindow):
 class SettingLayoutApp(CommonApp, setting_layout.Ui_MainWindow):
     switch_window = pyqtSignal()
     switch_window_exit = pyqtSignal()
+    switch_window_to_mysend_1 = pyqtSignal()
 
     """Окно register_layout"""
     def __init__(self, parent=None) -> None:
@@ -491,11 +559,16 @@ class SettingLayoutApp(CommonApp, setting_layout.Ui_MainWindow):
     def connected(self) -> None:
         """Подключение кнопок"""
         self.HomeButton.clicked.connect(self.switch_on_setting)
+        self.MySend.clicked.connect(self.switch_on_MySend)
         self.ThemeChange.clicked.connect(self.exit_system)
 
     def switch_on_setting(self) -> None:
         """Вход в настройки"""
         self.switch_window.emit()
+    
+    def switch_on_MySend(self) -> None:
+        """Вход в настройки"""
+        self.switch_window_to_mysend_1.emit()
 
     def exit_system(self) -> None:
         """Вход в настройки"""
@@ -503,6 +576,98 @@ class SettingLayoutApp(CommonApp, setting_layout.Ui_MainWindow):
             exit()
         else:
             self.switch_window_exit.emit()
+
+
+class MySendLayoutApp(CommonApp, mysend_layout.Ui_MainWindow):
+    switch_window_to_mysend_3 = pyqtSignal()
+    switch_window_to_mysend_2 = pyqtSignal()
+
+    """Окно mysend_layout"""
+    def __init__(self, parent=None) -> None:
+        super(MySendLayoutApp, self).__init__(parent)
+        self.setupUi(self)
+        self.setLanguage(self.current_language)
+
+        self.setFixedSize(self.size())
+        self.m_drag = False
+        self.m_DragPosition = QPoint()
+
+        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        
+        self.HideProgram.clicked.connect(self.hideWindow)
+        self.CloseProgram.clicked.connect(self.closeWindow)
+
+        self.rubutton.clicked.connect(self.ru_RU)
+        self.rubutton_2.clicked.connect(self.en_US)
+
+        self.connected()
+        self.addItemsToWidget()
+
+    def connected(self) -> None:
+        """Подключение кнопок"""
+        self.HomeButton.clicked.connect(self.switch_on_main)
+        self.SettingButton.clicked.connect(self.switch_on_setting)
+
+    def switch_on_main(self) -> None:
+        """Вход в настройки"""
+        self.switch_window_to_mysend_3.emit()
+    
+    def switch_on_setting(self) -> None:
+        """Вход в настройки"""
+        self.switch_window_to_mysend_2.emit()
+    
+    def addItemsToWidget(self):
+        self.widgets = dict()
+        for widget in self.widgets.values():
+           widget.clear()
+
+        while self.tabWidget.count() > 0:
+            self.tabWidget.removeTab(0)
+
+        requests = db().select_send(login=ldb().select_my_login())
+        requests = sorted(requests, key=lambda x: (x[0], x[1], x[2]))
+        
+        labelStyle = """
+        * {
+            border: 0;
+            background-color: 0;
+            width: 0;
+            height: 0;
+            color: #ca3767;
+            font: 200 9pt 'Montserrat Medium';
+        }
+        """
+
+        for request in requests:
+            fullname = f"{request[0]} {request[1]} {request[2]}"
+
+            # Проверяем, есть ли уже вкладка для данного пользователя
+            if fullname not in self.widgets:
+                # Если нет, то создайте новую вкладку и виджет
+                widget_with_scroll = QListWidget()
+                widget_with_scroll.setStyleSheet(labelStyle)
+                self.tabWidget.addTab(widget_with_scroll, fullname)
+
+                # Добавить виджет в словарь
+                self.widgets[fullname] = widget_with_scroll
+
+            # Теперь добавляем данные на вкладку
+            time_label = QListWidgetItem("Время записи: " + request[3])
+            time_label.setTextAlignment(Qt.AlignHCenter)
+            widget_with_scroll.addItem(time_label)
+
+            date_label = QListWidgetItem("Дата записи: " + request[4])
+            date_label.setTextAlignment(Qt.AlignHCenter)
+            widget_with_scroll.addItem(date_label)
+            
+            birth_year_label = QListWidgetItem("Год рождения: " + request[5])
+            birth_year_label.setTextAlignment(Qt.AlignHCenter)
+            widget_with_scroll.addItem(birth_year_label)
+
+            birth_year_label = QListWidgetItem("                   ")
+            birth_year_label.setTextAlignment(Qt.AlignHCenter)
+            widget_with_scroll.addItem(birth_year_label)
 
 
 class MainApp(QtWidgets.QApplication):
@@ -513,6 +678,9 @@ class MainApp(QtWidgets.QApplication):
         self.register = RegisterApp()
         self.main = MainLayoutApp()
         self.setting = SettingLayoutApp()
+        self.mysend = MySendLayoutApp()
+
+        self.main.request_added.connect(self.mysend.addItemsToWidget)
 
         self.login.switch_window.connect(self.show_register)
         self.register.switch_window.connect(self.show_login)
@@ -520,11 +688,17 @@ class MainApp(QtWidgets.QApplication):
         self.main.switch_window.connect(self.show_setting)
         self.setting.switch_window.connect(self.show_main_2)
         self.setting.switch_window_exit.connect(self.show_login_2)
+        self.main.switch_window_to_mysend_1.connect(self.show_mysend_1)
+        self.setting.switch_window_to_mysend_1.connect(self.show_mysend_2)
+        self.mysend.switch_window_to_mysend_3.connect(self.show_main_3)
+        self.mysend.switch_window_to_mysend_2.connect(self.show_setting_2)
 
         self.login.change_language.connect(self.updateLanguage)
         self.register.change_language.connect(self.updateLanguage)
         self.main.change_language.connect(self.updateLanguage)
         self.setting.change_language.connect(self.updateLanguage)
+
+        self.mysend.change_language.connect(self.updateLanguage)
 
         if ldb().select_join():
             self.main.show()
@@ -538,6 +712,7 @@ class MainApp(QtWidgets.QApplication):
         self.register.setLanguage(lang)
         self.main.setLanguage(lang)
         self.setting.setLanguage(lang)
+        self.mysend.setLanguage(lang)
 
     def get_position(self):
         """Get the position of the currently active window"""
@@ -552,6 +727,20 @@ class MainApp(QtWidgets.QApplication):
         self.register.move(window_pos)
         self.register.show()
         self.login.close()
+    
+    def show_mysend_1(self):
+        """Switch between windows"""
+        window_pos = self.get_position()
+        self.mysend.move(window_pos)
+        self.mysend.show()
+        self.main.close()
+    
+    def show_mysend_2(self):
+        """Switch between windows"""
+        window_pos = self.get_position()
+        self.mysend.move(window_pos)
+        self.mysend.show()
+        self.setting.close()
         
     def show_login(self):
         """Switch between windows"""
@@ -587,6 +776,20 @@ class MainApp(QtWidgets.QApplication):
         self.login.move(window_pos)
         self.login.show()
         self.setting.close()
+    
+    def show_main_3(self):
+        """Switch between windows"""
+        window_pos = self.get_position()
+        self.main.move(window_pos)
+        self.main.show()
+        self.mysend.close()
+    
+    def show_setting_2(self):
+        """Switch between windows"""
+        window_pos = self.get_position()
+        self.setting.move(window_pos)
+        self.setting.show()
+        self.mysend.close()
 
 
 if __name__ == "__main__":

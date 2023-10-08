@@ -33,7 +33,9 @@ class database:
                 surname TEXT,
                 middlename TEXT,
                 fullname TEXT,
-                date TEXT
+                time_recording TEXT,
+                date_recording TEXT,
+                date_birth TEXT
             )
         """)
         self.connection.commit()
@@ -72,13 +74,21 @@ class database:
         """, (login, password,))
         return self.cursor.fetchall()
 
-    def regSend(self, login: str, surname: str, middlename: str, fullname: str, date: str):
+    def regSend(self, login: str, surname: str, middlename: str, fullname: str, time_recording: str, date_recording: str, date_birth: str):
         """Запись заявки в базу данных"""
         self.cursor = self.connection.cursor()
         self.cursor.execute("""
-            INSERT INTO recording (login, surname, middlename, fullname, date) VALUES (%s, %s, %s, %s, %s)
-        """, (login, surname, middlename, fullname, date,))
+            INSERT INTO recording (login, surname, middlename, fullname, time_recording, date_recording, date_birth) VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """, (login, surname, middlename, fullname, time_recording, date_recording, date_birth,))
         self.connection.commit()
+    
+    def select_send(self, login: str) -> list:
+        """Вывод списка запросов"""
+        self.cursor = self.connection.cursor()
+        self.cursor.execute("""
+            SELECT surname, middlename, fullname, time_recording, date_recording, date_birth  FROM recording WHERE login = %s
+        """, (login,))
+        return self.cursor.fetchall()
 
 
 class LocalDatabase:
@@ -121,4 +131,4 @@ class LocalDatabase:
 
 
 if __name__ == "__main__":
-    pass
+    database()

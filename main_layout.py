@@ -161,12 +161,11 @@ class Ui_MainWindow(object):
         self.DateEditUser.setReadOnly(False)
         self.DateEditUser.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
         self.DateEditUser.setMaximumDate(QtCore.QDate(3000, 12, 31))
-        self.DateEditUser.setDate(QtCore.QDate(1799, 9, 14))
         self.DateEditUser.setMinimumDate(QtCore.QDate(1799, 9, 14))
         self.DateEditUser.setObjectName("DateEditUser")
         self.SignUpClinicButton = QtWidgets.QPushButton(self.MainFrame)
         self.SignUpClinicButton.setEnabled(False)
-        self.SignUpClinicButton.setGeometry(QtCore.QRect(20, 240, 300, 24))
+        self.SignUpClinicButton.setGeometry(QtCore.QRect(20, 280, 300, 24))
         self.SignUpClinicButton.setStyleSheet("QPushButton {\n"
 "    background-color: #ca3767;\n"
 "    color: white;\n"
@@ -218,6 +217,63 @@ class Ui_MainWindow(object):
 "}")
         self.rubutton.setObjectName("rubutton")
         self.horizontalLayout.addWidget(self.rubutton)
+        self.DateUser_2 = QtWidgets.QLabel(self.MainFrame)
+        self.DateUser_2.setGeometry(QtCore.QRect(24, 196, 171, 21))
+        self.DateUser_2.setStyleSheet("QFrame {\n"
+"    background-color: 0;\n"
+"    color: #ca3767;\n"
+"    font: 500 9pt \"Montserrat Medium\";    \n"
+"}\n"
+"")
+        self.DateUser_2.setObjectName("DateUser_2")
+        self.line_3 = QtWidgets.QFrame(self.MainFrame)
+        self.line_3.setGeometry(QtCore.QRect(20, 239, 300, 3))
+        self.line_3.setAutoFillBackground(False)
+        self.line_3.setStyleSheet("QFrame {\n"
+"    background-color: #ca3767;\n"
+"}\n"
+"")
+        self.line_3.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_3.setObjectName("line_3")
+        self.DateEditUser_2 = QtWidgets.QDateEdit(self.MainFrame)
+        self.DateEditUser_2.setGeometry(QtCore.QRect(80, 219, 71, 20))
+        self.DateEditUser_2.setStyleSheet("QDateEdit {\n"
+"    background-color: 0;\n"
+"    color: #ca3767;\n"
+"    border: 0;\n"
+"    font: 500 9pt \"Montserrat Medium\";    \n"
+"}\n"
+"")
+        self.DateEditUser_2.setInputMethodHints(QtCore.Qt.ImhPreferNumbers)
+        self.DateEditUser_2.setWrapping(False)
+        self.DateEditUser_2.setFrame(True)
+        self.DateEditUser_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.DateEditUser_2.setReadOnly(False)
+        self.DateEditUser_2.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        self.DateEditUser_2.setMaximumDate(QtCore.QDate(3000, 12, 31))
+        self.DateEditUser_2.setMinimumDate(QtCore.QDate(1799, 9, 14))
+        self.DateEditUser_2.setObjectName("DateEditUser_2")
+        self.timeEdit = QtWidgets.QTimeEdit(self.MainFrame)
+        self.timeEdit.setGeometry(QtCore.QRect(30, 217, 41, 22))
+        self.timeEdit.setStyleSheet("QTimeEdit {\n"
+"    background-color: 0;\n"
+"    color: #ca3767;\n"
+"    border: 0;\n"
+"    font: 500 9pt \"Montserrat Medium\";    \n"
+"}\n"
+"")
+        self.timeEdit.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+        self.timeEdit.setObjectName("timeEdit")
+        self.DateUser_3 = QtWidgets.QLabel(self.MainFrame)
+        self.DateUser_3.setGeometry(QtCore.QRect(67, 216, 16, 21))
+        self.DateUser_3.setStyleSheet("QFrame {\n"
+"    background-color: 0;\n"
+"    color: #ca3767;\n"
+"    font: 500 9pt \"Montserrat Medium\";    \n"
+"}\n"
+"")
+        self.DateUser_3.setObjectName("DateUser_3")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.MainBackground)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 30, 151, 361))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -240,6 +296,24 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.HomeButton)
         spacerItem1 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout.addItem(spacerItem1)
+        self.MySend = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.MySend.setStyleSheet("QPushButton {\n"
+"    color: white;\n"
+"    border: 0;\n"
+"    height: 40;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: black;\n"
+"    background-color: white;\n"
+"    border: 2px solid white;\n"
+"}\n"
+"\n"
+"")
+        self.MySend.setObjectName("MySend")
+        self.verticalLayout.addWidget(self.MySend)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem2)
         self.SettingButton = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.SettingButton.setStyleSheet("QPushButton {\n"
 "    color: white;\n"
@@ -256,8 +330,8 @@ class Ui_MainWindow(object):
 "")
         self.SettingButton.setObjectName("SettingButton")
         self.verticalLayout.addWidget(self.SettingButton)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout.addItem(spacerItem2)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem3)
         self.HideProgram = QtWidgets.QPushButton(self.MainBackground)
         self.HideProgram.setGeometry(QtCore.QRect(60, 1, 31, 31))
         self.HideProgram.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
@@ -307,7 +381,10 @@ class Ui_MainWindow(object):
         self.SignUpClinicButton.setText(_translate("MainWindow", "Записаться"))
         self.rubutton_2.setText(_translate("MainWindow", "EN"))
         self.rubutton.setText(_translate("MainWindow", "RU"))
+        self.DateUser_2.setText(_translate("MainWindow", "Время записи"))
+        self.DateUser_3.setText(_translate("MainWindow", "::"))
         self.HomeButton.setText(_translate("MainWindow", "Главная"))
+        self.MySend.setText(_translate("MainWindow", "Мои записи"))
         self.SettingButton.setText(_translate("MainWindow", "Настройки"))
         self.HideProgram.setText(_translate("MainWindow", "–"))
         self.CloseProgram.setText(_translate("MainWindow", "🞬"))

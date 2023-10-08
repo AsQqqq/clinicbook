@@ -14,11 +14,9 @@
         "offer": "Я Согласен с условиями"
     },
     "Main": {
-        "Panel1": "Главная",
-        "Panel2": "Настройки",
         "title": "Запись на приём",
         "labelfullname": "Фамилия, Имя, Отчество:",
-        "placeholfullname": "ФИО",
+        "placeholfullname": "Иванов Иван Иванович",
         "labeldateuser": "Дата рождения:",
         "sendbutton": "Записаться"
     },
@@ -30,14 +28,18 @@
         "texterror1": "Вы ввели логин или пароль неправильно.",
         "texterror2": "Такой никнейм уже существует.",
         "titilesuccessfully": "Успешно",
-        "textsuccessfully": "Ваша заявка оставлена!"
-    },
-    "Setting": {
+        "textsuccessfully": "Ваша заявка оставлена!",
         "Panel1": "Главная",
         "Panel2": "Настройки",
+        "Panel3": "Мои записи"
+    },
+    "Setting": {
         "title": "Настройки",
         "labelfnumber": "Горячая линия:",
         "labelexit": "Выход из системы",
         "exit": "Выйти"
+    },
+    "MySend": {
+        "title": "Мои записи"
     }
 }
